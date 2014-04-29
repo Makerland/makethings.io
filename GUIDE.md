@@ -137,6 +137,13 @@ It's good to have a mix of the following:
 
 ### Morning of the event
 
+## Nice to have
+
+- videos
+- photos
+- t-shirts / bags
+- decorations
+
 ## FAQ
 
 ### Who can organize?
