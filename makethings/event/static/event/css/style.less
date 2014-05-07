@@ -174,14 +174,13 @@ a {
 		background: rgba(0,0,0,0.6);
 	}
 }
-
+.cls { clear: both; }
 #agenda {
 	.day {
 		margin: 0 auto 50px auto;
 		width: 815px;
 		position: relative;
-		height: 880px;
-		
+
 		.head {
 			width: 803px;
 			height: 75px;
@@ -193,7 +192,6 @@ a {
 			padding: 25px 0 0 51px;
 		}
 		.schedule {
-			position: absolute;
 			margin: 0;
 			padding: 80px 0px 0px 0px;
 			border: 2px solid black;
@@ -213,8 +211,6 @@ a {
 				}
 				span:nth-child(2){
 					width: 200px;
-					font-weight: bold;
-					a { color: black !important; }
 				}
 				span:last-child {
 					width: auto;
@@ -226,9 +222,9 @@ a {
 			li.workshop {
 				background: -webkit-linear-gradient(left, #00D062, #00D062 1%, white 1%, white);
 			}
-            li.workshop-two-days {
-                background: -webkit-linear-gradient(left, #00D062, #00D062 1%, white 0%, white 1.5%, #00b3f0 0%, #00b3f0 2%, white 0%, white);
-            }
+			li.workshop-two-days {
+				background: -webkit-linear-gradient(left, #00D062, #00D062 1%, white 0%, white 1.5%, #00b3f0 0%, #00b3f0 2%, white 0%, white);
+			}
 			li.highlighted, li.coffeebreak {
 				background: #00A9E5;
 				color: white;
@@ -256,9 +252,9 @@ a {
 					color: #00D062;
 
 				}
-                .text-blue {
-                  color: #00b3f0;
-                }
+				.text-blue {
+				  color: #00b3f0;
+				}
 			}
 		}
 	}
@@ -313,7 +309,7 @@ a {
 		background: rgba(0,0,0,0.6);
 	}
 
-	input {
+	input[type="text"], input[type="email"] {
 		background: rgba(255,255,255,0.2);
 		border: 1px solid white;
 		color: white;

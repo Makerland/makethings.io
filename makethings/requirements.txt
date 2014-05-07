@@ -1,0 +1,7 @@
+Django==1.4.3
+PIL==1.1.7
+South==0.8.2
+django-positions==0.5.1
+django-suit==0.2.8
+psycopg2==2.5
+wsgiref==0.1.2

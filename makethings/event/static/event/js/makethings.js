@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 <!-- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV -->   
          $(this).click(function() {
-           
+
            $('html, body').animate({scrollTop: targetOffset}, 1000);
            return false;
          });

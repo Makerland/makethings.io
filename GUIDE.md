@@ -107,9 +107,32 @@ It's good to have a mix of the following:
 - YOU! - yes, you are a good person to talk! Share your story, talk about Make Things or Makerland, inspire people to do the same.
 
 ## Logistics
+
+There is a couple things that are important while organizing Make Things event. We won't try to explain everything in a smallest detail, but we did elaborate on a couple of most important things:
+
 ### Hardware
+
+Hardware can be the biggest cost of organizing the event. Mind this while choosing the workshop topics and try to choose the one that are the most cost effective. Prepare a spreadsheet with everything you need for the event and be creative while trying to find these things. In our experience, there is a couple of things you may do to decrease the costs significantly:
+
+1. **Reach out to local electronics store** - they may want to borrow you some things for a promotion during the event. We did this with [Nettigo](http://nettigo.pl/) in Poland. After the event, they sold this hardware with a discount. Let them set up a pop up store during your event as an additional perk for them and your attendees. 
+
+2. Reach out to local hackerspaces, makerspaces, hardware startups, universities, user groups - they may want to borrow you hardware they already have for a workshop.
+
+3. Talk to local hardware companies: 3D printing communities, producers or distributors of 3D printers etc. They are often willing to come with hardware to promote themselves. 
+
+4. Local companies who organize workshops - see if there are any companies that organizes hardware related workshops for profit. They too can bring some hardware and experience in exchange for promotion. 
+
+General rule: be creative and entrepreneurial. Don't be afraid to ask (even if this seems like a crazy idea), you never know until you ask.
+
 ### Venue
+
+General rule about the venue: very often, you can get space for free. Your target are: big coworking spaces, hackespaces, makerspaces, univerisities. These are the places that may be willing to offer you space for free (especially during weekends), if you bring enough people in. 
+
+You need a place that has good wifi and internet and can comfortably allocate up to 70 people (tables + chairs). 
+
 ### Food
+
+Food is not required, but we really recommend to have at least lunch. Pizza is ok if you're on budget, but if you can afford something more, think about healthy, balanced, warm meal for lunch. Order around 25% vegetarian option. 
 
 ## Costs
 

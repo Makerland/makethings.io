@@ -151,11 +151,13 @@ a {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
+.cls {
+  clear: both;
+}
 #agenda .day {
   margin: 0 auto 50px auto;
   width: 815px;
   position: relative;
-  height: 880px;
 }
 #agenda .day .head {
   width: 803px;
@@ -168,7 +170,6 @@ a {
   padding: 25px 0 0 51px;
 }
 #agenda .day .schedule {
-  position: absolute;
   margin: 0;
   padding: 80px 0px 0px 0px;
   border: 2px solid black;
@@ -189,10 +190,6 @@ a {
 }
 #agenda .day .schedule li span:nth-child(2) {
   width: 200px;
-  font-weight: bold;
-}
-#agenda .day .schedule li span:nth-child(2) a {
-  color: black !important;
 }
 #agenda .day .schedule li span:last-child {
   width: auto;
@@ -279,7 +276,8 @@ a {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
-#social input {
+#social input[type="text"],
+#social input[type="email"] {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid white;
   color: white;
