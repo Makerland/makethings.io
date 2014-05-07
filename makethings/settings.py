@@ -10,7 +10,7 @@ def get_env_var(name, **kwargs):
             return kwargs['default']
         raise ImproperlyConfigured('Set the {} environment variable.'.format(name))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
