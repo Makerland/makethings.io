@@ -1,7 +1,6 @@
 Django==1.4.3
 dj-database-url==0.2.2
 dj-static==0.0.5
-PIL==1.1.7
 South==0.8.2
 django-positions==0.5.1
 django-suit==0.2.8
