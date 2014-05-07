@@ -20,18 +20,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'makethings', 
-        'USER': 'ola',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+DATABASES = {}
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 TIME_ZONE = 'Europe/Warsaw'
 LANGUAGE_CODE = 'en-us'
