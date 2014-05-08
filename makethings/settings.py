@@ -39,7 +39,7 @@ USE_TZ = True
 
 
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-MEDIA_ROOT = os.path.join(PROJECT_PATH, '../static/media')
+MEDIA_ROOT = 'staticfiles/media'
 MEDIA_URL = '/static/media/'
 
 STATIC_ROOT = 'staticfiles'
