@@ -13,7 +13,7 @@ if settings.DEBUG == False:
 		'document_root': settings.STATIC_ROOT,
 		}),
 	)
-	
+
 urlpatterns += patterns('',
 	url(r'^(?P<city>[\w\d]+)', 'event.views.index', name='event'),
 	url(r'^$', 'core.views.index', name='index'),
