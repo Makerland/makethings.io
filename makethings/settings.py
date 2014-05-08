@@ -42,10 +42,9 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_PATH, '../static/media')
 MEDIA_URL = '/static/media/'
 
-STATIC_ROOT = 'collectedstatic'
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, '../static'),
     os.path.join(PROJECT_PATH, 'static'),
 )
 STATICFILES_FINDERS = (
