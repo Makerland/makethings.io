@@ -20,7 +20,7 @@ Make Things was born after first Makerland: European Maker Conference organized 
 ## The Basics
 Make Things events are non-profit, free for participants. We do not pay workshop leaders, speakers or organizers. Attendees don't need any previous knowledge about programming or electronics and there are no age-limitations. All the attendees need is a laptop and some curiosity.
 
-The idea behind the Make Things workshop is quite different from what you used to see before. Our workshops are asynchronous. What that means? It basically means that everyone can join and leave the workshop anytime they want. 
+The idea behind the Make Things workshop is quite different from what you used to see before. Our workshops are asynchronous. What that means? It basically means that everyone can join and leave the workshop anytime they want. Think about the implications - workshops cannot be strictly timed, it's not a lesson at school, and there is no need for workshop leader to recite the same content all over again and people do not have to wait for a workshop to begin. That way - everyone is having fun, workshop leaders and helpers too!
 
 ### Philosophy
 
@@ -114,7 +114,7 @@ There is a couple things that are important while organizing Make Things event. 
 
 Hardware can be the biggest cost of organizing the event. Mind this while choosing the workshop topics and try to choose the one that are the most cost effective. Prepare a spreadsheet with everything you need for the event and be creative while trying to find these things. In our experience, there is a couple of things you may do to decrease the costs significantly:
 
-1. **Reach out to local electronics store** - they may want to borrow you some things for a promotion during the event. We did this with [Nettigo](http://nettigo.pl/) in Poland. After the event, they sold this hardware with a discount. Let them set up a pop up store during your event as an additional perk for them and your attendees. 
+1. **Reach out to local electronics store** - they may want to borrow you some things for a promotion during the event. We did this with [Nettigo](http://nettigo.pl/) in Poland. After the event, they were still able to sold hardware with discounted price in their store, so their costs were low. Let them set up a pop up store during your event as an additional perk for them and your attendees. 
 
 2. Reach out to local hackerspaces, makerspaces, hardware startups, universities, user groups - they may want to borrow you hardware they already have for a workshop.
 
@@ -135,6 +135,9 @@ You need a place that has good wifi and internet and can comfortably allocate up
 Food is not required, but we really recommend to have at least lunch. Pizza is ok if you're on budget, but if you can afford something more, think about healthy, balanced, warm meal for lunch. Order around 25% vegetarian option. 
 
 ## Costs
+
+* Make sure your venue is free. If it's impossible - keep costs of the venue as low as possible. This is the worst kind of "cost" - fixed one - meaning no matter how many attendees you get - it will stay the same. 
+
 
 ## Sponsorships
 
