@@ -2,3 +2,4 @@ collectedstatic
 .idea
 *.pyc
 makethings/local_settings.py
+.DS_Store
