@@ -136,8 +136,27 @@ Food is not required, but we really recommend to have at least lunch. Pizza is o
 
 ## Costs
 
-* Make sure your venue is free. If it's impossible - keep costs of the venue as low as possible. This is the worst kind of "cost" - fixed one - meaning no matter how many attendees you get - it will stay the same. 
+The costs below are estimated for 50 participants, 5 workshop stations (2 workshop leaders on each). 60 people total. They are made in Poland, converted to euros for convincence.  It’s easiest to try to get a local sponsor to pay the bills directly or partner with someone who has a set account to handle money. We also divided this into two parts: required costs and "nice to have" costs. Look on "nice to have" only if you have money from sponsors to spare. Try your best to find sponsors for those things too, because they really make a difference in how the event is perceived by attendees. __Small details matters.__
 
+### Required budget:
+
+* __Venue__ - this often (not always), can be free. If it's impossible - keep costs of the venue as low as possible. This is the worst kind of "cost" - fixed one - meaning no matter how many attendees you get - it will stay the same. They can be really expensive, but try to partner with your local coworking place, hackerspace or a startup that isn't using their space during weekends. Price: 0 - XXX.
+* __Food__ - catered lunch can be around 8 - 15 euros, but this strongly depend on your location. Price: 480 - 900 euros.
+* __Coffee and drinks__ - coffee is incredibly important :) You can get a caterer to offer coffee and drinks for you attendees (but this can be expensive - as much as 10 - 15 euros per person) or you can go shopping the day before and do it yourself for ~5 euros per person. Price: 300 - 600 euros.
+* __Hardware__ - this is a time to be creative. It can be very expensive, or very cheap if you do some work and try to rent / borrow things from local community or hardware store. Read more about this in a "*Logistics -> Hardware*" section above. Price: set aside 400 - 1000 euros for consumables and things you can't get for free.
+
+Total: 1180 euros
+
+### Nice to have budget:
+
+* __Breakfast__ - coffee & pastry will do. Price: 180 euros
+* __Marketing materials__ - print workbooks, order Makerland books from us (http://book.makerland.org - only 2.5$ for a printed copy!), order stickers for attendees, do some fun posters decorations, order other swag. Price: ~200 euros.
+* __Workshop leader dinner__ - A way to thank you coaches for a hard work. At restaurant or home made. Around 20 euros per head. Price: 200 euros.
+* __Afterparty__ - It's nice to throw a small party with free beverages, but you can also go to a local bar and have everyone pay for themselves. Price: 0 - XXX
+* __Videos & photos__ - Videos & photos are a nice memory for you and attendees! You can hire a professional photographer, or you can ask talented friends for help :) If you're planning to do another Make Things later, videos & photos are a good way to show sponsors and press the vibe, atmosphere and how it looks like. Price: 0 - XXX
+* * __Travel expenses__- 	If you don’t have any Make Things-team members in your country, consider inviting us over. We don’t need fancy hotels, promise! Same if you want to invite speakers to your event. Price: 0 - XXX
+
+Total: 780 euros
 
 ## Sponsorships
 
