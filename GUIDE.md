@@ -1,3 +1,12 @@
+# TO DO:
+
+- faq
+- promotion section
+- sponsorships section
+- links to materials in materials section
+- word about selection process
+- all missing links!!
+
 # Make Things: Organizer Handbook
 
 If you're reading this, it means that you're probably thinking about organizing your own Make Things event. That's awesome! First step to actually organize it is done, congratulations :)
@@ -162,36 +171,27 @@ Total: 780 euros
 
 ## Promotion
 
-## Checklist
+## Materials
 
-### 3 months before
+Feel free to use everything we made for Make Things or Makerland:
 
-### 2 months before
-
-### 1 month before
-
-### 3 weeks before
-
-### 2 weeks before
-
-### 1 week before
-
-### 3 days before
-
-### 1 day before
-
-### Morning of the event
-
-## Nice to have
-
-- videos
-- photos
-- t-shirts / bags
-- decorations
+- [12 ready tutorials you can use during workshops - http://book.makerland.org/](http://book.makerland.org/)
+- sponsorship proposal
+- sticker design
+- t-shirt design
+- decorations materials
 
 ## FAQ
 
-### Who can organize?
+#### Who can organize?
+
+Make Things events have their own unique vibe & atmosphere, so we want people to understand that. That's why you can only organize Make Things event if you ever attended one of local Make Things or Makerland events. That's it! Also, they maybe only one organization group per city, so if Make Things is already happening in your city, consider joining the organization team.
+
+#### Does it have to be free?
+
+We strongly encourage that, but it's not a requirement. We believe it is possible to find sponsors to cover the basic costs, and free event is more accessible for everyone — that's our goal. Make sure to choose attendees who care - more about that below. 
+
+#### How to choose attendees?
 
 
 
