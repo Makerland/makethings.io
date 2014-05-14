@@ -116,7 +116,7 @@
 			<div class="row" id="{{ workshop.name|slugify }}">
 				<div class="col-md-4">
 					<div class="icon box-1">
-						<img src="{{ workshop.icon.url }}" />
+						{% if workshop.icon %}<img src="{{ workshop.icon.url }}" />{% endif %}
 					</div>
 				</div>
 				<div class="col-md-4 description">

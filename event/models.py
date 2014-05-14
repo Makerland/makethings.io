@@ -8,7 +8,7 @@ class Organizer(models.Model):
 	user = models.ForeignKey(User, null=False, blank=False)
 	name = models.CharField(max_length=255, null=False, blank=False)
 	twitter = models.CharField(max_length=50, null=True, blank=True)
-	photo = models.ImageField(upload_to='event/organizers/', null=False, blank=False)
+	photo = models.ImageField(upload_to='event/organizers/', null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
@@ -24,12 +24,12 @@ class Event(models.Model):
 	country = models.CharField(max_length=100, null=False, blank=False)
 	date = models.DateField(null=False, blank=False)
 	main_organizer = models.ForeignKey(Organizer, null=False, blank=False, related_name="main_organizer")
-	team = models.ManyToManyField(Organizer, null=False, blank=False, related_name="team")
+	team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="team")
 	status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 
 	def __unicode__(self):
 		number = Event.objects.filter(city=self.city, country=self.country, date__lt=self.date).count() + 1
-		return "{0}, {1} #{2}".format(self.city, self.country, number)
+		return u"{0}, {1} #{2}".format(self.city, self.country, number)
 
 
 class Website(models.Model):
@@ -86,7 +86,7 @@ class Website(models.Model):
 		return self.name()
 
 	def name(self):
-		return "{0} website".format(self.event)
+		return u"{0} website".format(self.event)
 
 class WorkshopLeader(models.Model):
 	website = models.ForeignKey(Website, null=True, blank=False)
@@ -106,7 +106,7 @@ class Workshop(models.Model):
 	leaders = models.ManyToManyField(WorkshopLeader, null=True, blank=True)
 
 	def __unicode__(self):
-		return "{0} at {1}".format(self.name, self.website.event)
+		return u"{0} at {1}".format(self.name, self.website.event)
 
 class FAQ(models.Model):
 	website = models.ForeignKey(Website, null=False, blank=False)
@@ -114,7 +114,7 @@ class FAQ(models.Model):
 	answer = models.TextField(null=False, blank=False)
 
 	def __unicode__(self):
-		return "Q&A #{0}".format(self.id)
+		return u"Q&A #{0}".format(self.id)
 
 	class Meta:
 		verbose_name = "FAQ"
