@@ -375,3 +375,9 @@ footer .left .fb-like {
   top: 0;
   right: -15px;
 }
+button.button {
+  margin-left: 4px;
+}
+button.button:before {
+  margin-left: -57px;
+}
