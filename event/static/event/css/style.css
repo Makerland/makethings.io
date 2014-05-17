@@ -328,7 +328,7 @@ footer .wires {
 }
 footer .left {
   padding: 100px 0 30px 80px;
-  font: 18px 'Droid Sans', Lato, Helvetica, Arial, sans-serif;
+  font: 18px 'Droid Sans', 'Open Sans', Helvetica, Arial, sans-serif;
   line-height: 150%;
 }
 footer .left .fb-like {
@@ -343,7 +343,7 @@ footer .left .fb-like {
   margin-left: 17px;
   cursor: pointer;
   border: 0;
-  font-family: BebasNeue, Helvetica, Arial, sans-serif;
+  font-family: 'Bebas Neue', 'Bebas', 'Droid Sans', 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 36px;
   text-transform: uppercase;
   background: url(../img/button_bigred_content.png) repeat-x;
