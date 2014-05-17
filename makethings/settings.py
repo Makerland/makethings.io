@@ -42,8 +42,18 @@ PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = 'staticfiles/media'
 MEDIA_URL = '/static/media/'
 
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = 'makethings'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
 STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
 STATICFILES_DIRS = (
 )
 STATICFILES_FINDERS = (
@@ -94,10 +104,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'suit',
     'django.contrib.admin',
 
+	'storages',
     'south',
 
     'core',
