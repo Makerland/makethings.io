@@ -46,6 +46,10 @@ class WebsiteAdmin(admin.ModelAdmin):
 			'classes': ('suit-tab suit-tab-content',),
 		    'fields': ['sponsors_title', 'sponsors_description']
 		}),
+        ('FAQ section', {
+			'classes': ('suit-tab suit-tab-content',),
+		    'fields': ['faqs'],
+		}),
 	    ('Newsletter section', {
 			'classes': ('suit-tab suit-tab-content',),
 		    'fields': ['newsletter_title', 'newsletter_description', 'social_title']
@@ -152,14 +156,14 @@ class SponsorAdmin(admin.ModelAdmin):
 		return qs.filter(website__team__in=[organizer,])
 
 class FAQAdmin(admin.ModelAdmin):
-	list_display = ['question', 'answer', 'website']
-	list_filter = ['website',]
+	list_display = ['question', 'answer']
+	list_filter = ['websites',]
 
 	def get_form(self, request, obj=None, **kwargs):
 		form = super(FAQAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
+			form.base_fields['websites'].queryset = Website.objects.filter(team__in=[organizer,])
 		return form
 
 	def queryset(self, request):

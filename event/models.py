@@ -34,7 +34,7 @@ class Website(models.Model):
     event = models.ForeignKey(Event, null=False, blank=False)
     url = models.CharField(max_length=100, null=False, blank=False)
     date = models.DateField(null=True, blank=True)
-    team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="team")
+    team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="websites")
     status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 
     #About section
@@ -112,7 +112,7 @@ class Workshop(models.Model):
 
 
 class FAQ(models.Model):
-    website = models.ForeignKey(Website, null=False, blank=False)
+    websites = models.ManyToManyField(Website, null=True, blank=True, related_name='faqs')
     question = models.TextField(null=False, blank=False)
     answer = models.TextField(null=False, blank=False)
 
