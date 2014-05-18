@@ -113,6 +113,8 @@ INSTALLED_APPS = (
     'event',
 )
 
+AUTH_USER_MODEL = 'event.User'
+
 SUIT_CONFIG = {
     # header
     'ADMIN_NAME': 'Make Things',

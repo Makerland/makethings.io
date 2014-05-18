@@ -1,11 +1,46 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import models as auth_models
+from django.utils.translation import ugettext_lazy as _
 from positions import PositionField
 
 
+class UserManager(auth_models.BaseUserManager):
+
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError('Users must have an email address')
+        user = self.model(email=self.normalize_email(email))
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password):
+        user = self.create_user(email, password=password)
+        user.is_superuser = user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+
+class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def get_short_name(self):
+        return self.first_name
+
+
 class Organizer(models.Model):
-    user = models.ForeignKey(User, null=False, blank=False)
+    user = models.OneToOneField(User, null=False, blank=False)
     name = models.CharField(max_length=255, null=False, blank=False)
     twitter = models.CharField(max_length=50, null=True, blank=True)
     photo = models.ImageField(upload_to='event/organizers/', null=True, blank=True)

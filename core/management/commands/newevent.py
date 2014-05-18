@@ -54,10 +54,8 @@ class Command(BaseCommand):
 		main_organizer = None
 		members = []
 		for member in team:
-			member['username'] = member['first_name'].lower()+member['last_name'].lower()
 			member['password'] = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(8))
 			user = User.objects.create(email=member['email'],
-										username=member['username'],
 										first_name=member['first_name'],
 										last_name=member['last_name'],
 										is_active=True,
@@ -70,7 +68,7 @@ class Command(BaseCommand):
 			if not main_organizer:
 				main_organizer = organizer
 			members.append(organizer)
-			click.echo(u"{0} - username: {1} password: {2}".format(member['first_name'], member['username'], member['password']))
+			click.echo(u"{0} - email: {1} password: {2}".format(member['first_name'], member['email'], member['password']))
 
 		event = Event.objects.create(city=city, country=country, main_organizer=main_organizer)
 		website = Website.objects.create(event=event, url=url, date=date, status=0, about_title=u"Make Things in {0}".format(city), organizers_title=u"Make Things in {0} is organized by".format(city))
@@ -79,7 +77,7 @@ class Command(BaseCommand):
 
 		Workshop.objects.create(website=website, name='Sample workshop')
 		faq = FAQ.objects.create(question='Sample question?', answer='Sample answer')
-		faq.websites.add(faq)
+		faq.websites.add(website)
 		AgendaEntry.objects.create(website=website, start_time='09:00', title='Start!', is_highlighted=True, is_break=False)
 
 		click.echo(u"Website is ready here: http://makethings.io/{0}".format(url))
