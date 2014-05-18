@@ -118,12 +118,12 @@ class WorkshopAdmin(admin.ModelAdmin):
 		organizer = Organizer.objects.get(user=request.user)
 		return qs.filter(website__team__in=[organizer,])
 
-class AgendaAdmin(admin.ModelAdmin):
+class AgendaEntryAdmin(admin.ModelAdmin):
 	list_display = ['title', 'website', 'start_time', 'end_time', 'is_highlighted', 'is_break']
 	list_filter = ['website', ]
 
 	def get_form(self, request, obj=None, **kwargs):
-		form = super(AgendaAdmin, self).get_form(request, obj, **kwargs)
+		form = super(AgendaEntryAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
 			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
@@ -131,7 +131,7 @@ class AgendaAdmin(admin.ModelAdmin):
 		return form
 
 	def queryset(self, request):
-		qs = super(AgendaAdmin, self).queryset(request)
+		qs = super(AgendaEntryAdmin, self).queryset(request)
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
@@ -178,6 +178,6 @@ admin.site.register(Event, EventAdmin)
 admin.site.register(Organizer, OrganizerAdmin)
 admin.site.register(WorkshopLeader, WorkshopLeaderAdmin)
 admin.site.register(Workshop, WorkshopAdmin)
-admin.site.register(Agenda, AgendaAdmin)
+admin.site.register(AgendaEntry, AgendaEntryAdmin)
 admin.site.register(Sponsor, SponsorAdmin)
 admin.site.register(FAQ, FAQAdmin)

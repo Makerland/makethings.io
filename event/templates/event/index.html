@@ -33,9 +33,9 @@
 			<li><a href="#about">About</a></li>
 			{% if website.apply_title %}<li><a href="#apply"><b>Get a ticket!</b></a></li>{% endif %}
 			{% if website.workshop_set.count > 0 and website.workshops_title %}<li><a href="#workshops">Workshops</a></li>{% endif %}
-			{% if website.agenda_set.count > 0 %}<li><a href="#agenda">Agenda</a></li>{% endif %}
+			{% if website.agenda_entries.count > 0 %}<li><a href="#agenda">Agenda</a></li>{% endif %}
 			{% if website.sponsor_set.count > 0 or website.sponsors_title %}<li><a href="#sponsors">Sponsors</a></li>{% endif %}
-			{% if website.faq_set.count > 0 %}<li><a href="#faq">FAQ</a></li>{% endif %}
+			{% if website.faqs.count > 0 %}<li><a href="#faq">FAQ</a></li>{% endif %}
 			<li class="pull-right"><a href="/" style="text-decoration: underline;">Make Things in your city?</a></li>
 		  </ul>
 		</div><!--/.nav-collapse -->
@@ -61,7 +61,7 @@
 	<div id="dateplace">
 	  	<div class="container">
 	  		<div class="box">
-	  			<h2>{{ website.event.date|date:"d M, Y" }}</h2>
+	  			<h2>{{ website.date|date:"d M, Y" }}</h2>
 	  			<h2>{{ website.location_name }}</h2>
 	  			{% if website.location_button %}
 					<a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
@@ -156,7 +156,7 @@
 	</div>
 	{% endif %}
 
-    {% if website.agenda_set.count > 0 or website.sponsor_set.count > 0 %}
+    {% if website.agenda_entries.count > 0 or website.sponsor_set.count > 0 %}
 	<!-- Agenda / Sponsors -->
 	<div class="container">
 		<div class="row" style="padding: 30px 0">
@@ -165,12 +165,12 @@
 				<h2>{{ website.agenda_title }}</h2>
 
 				<div class="day" id="first">
-                    {% if website.agenda_set.count == 0 %}
+                    {% if website.agenda_entries.count == 0 %}
                         Agenda will be announced soon.
                     {% else %}
-                        <div class="head">{{ website.event.date|date:"D, d M Y" }}</div>
+                        <div class="head">{{ website.date|date:"D, d M Y" }}</div>
                         <ul class="schedule">
-                            {% for agenda in website.agenda_set.all %}
+                            {% for agenda in website.agenda_entries.all %}
                             <li class="{% if agenda.is_highlighted %}highlighted{% elif agenda.is_break %}coffeebreak{% endif %}{% if agenda.workshop %} workshop{% endif %}">
                                 <span>{{ agenda.start_time|date:"G:i" }}{% if agenda.end_time %} - {{ agenda.end_time|date:"G:i" }}{% endif %}</span>
                                 <span>
@@ -229,12 +229,12 @@
 		</div>
 	</div>
 
-    {% if website.faq_set.count > 0 %}
+    {% if website.faqs.count > 0 %}
 	<!-- FAQ -->
 	<div class="container">
 		<div id="faq">
             <div class="row">
-            {% for faq in website.faq_set.all %}
+            {% for faq in website.faqs.all %}
 				<div class="col-md-4">
 					<p><b>{{ faq.question }}</b></p>
 					<p>{{ faq.answer }}</p>
@@ -275,7 +275,7 @@
 		<div id="team">
 			<h2>{{ website.organizers_title }}</h2>
 			<div class="row">
-				{% for organizer in website.event.team.all %}
+				{% for organizer in website.team.all %}
 
 					<div class="col-md-3">
 						{% if organizer.photo %}<p class="photo"><div class="circle" style="background: url('{{ organizer.photo.url }}') center no-repeat; background-size: 160px auto"></div></p>{% endif %}

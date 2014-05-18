@@ -124,8 +124,8 @@ class FAQ(models.Model):
         return u"Q&A #{0}".format(self.id)
 
 
-class Agenda(models.Model):
-    website = models.ForeignKey(Website, null=False, blank=False)
+class AgendaEntry(models.Model):
+    website = models.ForeignKey(Website, null=False, blank=False, related_name='agenda_entries')
     workshop = models.ForeignKey(Workshop, null=True, blank=True, help_text="Use only if agenda item is a workshop. Leave blank otherwise.")
     start_time = models.TimeField(null=False, blank=False)
     end_time = models.TimeField(null=True, blank=True)
@@ -135,7 +135,7 @@ class Agenda(models.Model):
 
     class Meta:
         ordering = ('website', 'start_time')
-        verbose_name_plural = "Agenda items"
+        verbose_name_plural = "Agenda entries"
 
     def __unicode__(self):
         return self.title
