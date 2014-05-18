@@ -72,10 +72,10 @@ class Command(BaseCommand):
 			members.append(organizer)
 			click.echo(u"{0} - username: {1} password: {2}".format(member['first_name'], member['username'], member['password']))
 
-		event = Event.objects.create(city=city, country=country, date=date, main_organizer=main_organizer, status=0)
+		event = Event.objects.create(city=city, country=country, main_organizer=main_organizer)
+		website = Website.objects.create(event=event, url=url, date=date, status=0, about_title=u"Make Things in {0}".format(city), organizers_title=u"Make Things in {0} is organized by".format(city))
 		for member in members:
-			event.team.add(member)
-		website = Website.objects.create(event=event, url=url, about_title=u"Make Things in {0}".format(city), organizers_title=u"Make Things in {0} is organized by".format(city))
+			website.team.add(member)
 
 		Workshop.objects.create(website=website, name='Sample workshop')
 		FAQ.objects.create(website=website, question='Sample question?', answer='Sample answer')

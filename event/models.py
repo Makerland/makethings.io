@@ -15,28 +15,27 @@ class Organizer(models.Model):
 
 
 class Event(models.Model):
+    city = models.CharField(max_length=100, null=False, blank=False)
+    country = models.CharField(max_length=100, null=False, blank=False)
+    main_organizer = models.ForeignKey(Organizer, null=False, blank=False, related_name="main_organizer")
+
+    def __unicode__(self):
+        number = Event.objects.filter(city=self.city, country=self.country).count() + 1
+        return u"{0}, {1} #{2}".format(self.city, self.country, number)
+
+
+class Website(models.Model):
     STATUSES = (
         (0, 'Draft'),
         (1, 'Published'),
         (2, 'Done')
     )
 
-    city = models.CharField(max_length=100, null=False, blank=False)
-    country = models.CharField(max_length=100, null=False, blank=False)
-    date = models.DateField(null=False, blank=False)
-    main_organizer = models.ForeignKey(Organizer, null=False, blank=False, related_name="main_organizer")
-    team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="team")
-    status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
-
-    def __unicode__(self):
-        number = Event.objects.filter(city=self.city, country=self.country, date__lt=self.date).count() + 1
-        return u"{0}, {1} #{2}".format(self.city, self.country, number)
-
-
-class Website(models.Model):
     event = models.ForeignKey(Event, null=False, blank=False)
     url = models.CharField(max_length=100, null=False, blank=False)
-    is_archived = models.BooleanField(default=False, null=False, blank=False)
+    date = models.DateField(null=True, blank=True)
+    team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="team")
+    status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 
     #About section
     about_title = models.CharField(max_length=255, null=False, blank=False, default="Make Things in ...")

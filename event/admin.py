@@ -3,12 +3,12 @@ from django.contrib import admin
 from .models import *
 
 class WebsiteAdmin(admin.ModelAdmin):
-	list_display = ['name', 'event', 'url', 'is_archived']
+	list_display = ['name', 'event', 'url', 'status']
 	
 	fieldsets = [
 		('General settings', {
 			'classes': ('suit-tab suit-tab-general',),
-			'fields': ['event', 'url', 'is_archived',]
+			'fields': ['event', 'url', 'date', 'team', 'status']
 		}),
 		('Social', {
 			'classes': ('suit-tab suit-tab-general',),
@@ -63,10 +63,10 @@ class WebsiteAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(event__team__in=[organizer,])
+		return qs.filter(team__in=[organizer,])
 
 class EventAdmin(admin.ModelAdmin):
-	list_display = ['city', 'country', 'date', 'main_organizer', 'status',]
+	list_display = ['city', 'country', 'main_organizer']
 
 class OrganizerAdmin(admin.ModelAdmin):
 	list_display = ['user', 'name', 'twitter',]
@@ -85,7 +85,7 @@ class WorkshopLeaderAdmin(admin.ModelAdmin):
 		form = super(WorkshopLeaderAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(event__team__in=[organizer,])
+			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
 		return form
 
 	def queryset(self, request):
@@ -93,7 +93,7 @@ class WorkshopLeaderAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(website__event__team__in=[organizer,])
+		return qs.filter(website__team__in=[organizer,])
 
 class WorkshopAdmin(admin.ModelAdmin):
 	list_display = ['name', 'website', 'is_public']
@@ -103,8 +103,8 @@ class WorkshopAdmin(admin.ModelAdmin):
 		form = super(WorkshopAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(event__team__in=[organizer,])
-			form.base_fields['leaders'].queryset = WorkshopLeader.objects.filter(website__event__team__in=[organizer,])
+			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
+			form.base_fields['leaders'].queryset = WorkshopLeader.objects.filter(website__team__in=[organizer,])
 		return form
 
 	def queryset(self, request):
@@ -112,7 +112,7 @@ class WorkshopAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(website__event__team__in=[organizer,])
+		return qs.filter(website__team__in=[organizer,])
 
 class AgendaAdmin(admin.ModelAdmin):
 	list_display = ['title', 'website', 'start_time', 'end_time', 'is_highlighted', 'is_break']
@@ -122,8 +122,8 @@ class AgendaAdmin(admin.ModelAdmin):
 		form = super(AgendaAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(event__team__in=[organizer,])
-			form.base_fields['workshop'].queryset = Workshop.objects.filter(website__event__team__in=[organizer,])
+			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
+			form.base_fields['workshop'].queryset = Workshop.objects.filter(website__team__in=[organizer,])
 		return form
 
 	def queryset(self, request):
@@ -131,7 +131,7 @@ class AgendaAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(website__event__team__in=[organizer,])
+		return qs.filter(website__team__in=[organizer,])
 
 class SponsorAdmin(admin.ModelAdmin):
 	list_display = ['name', 'website', 'description', 'url', 'order']
@@ -141,7 +141,7 @@ class SponsorAdmin(admin.ModelAdmin):
 		form = super(SponsorAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(event__team__in=[organizer,])
+			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
 		return form
 
 	def queryset(self, request):
@@ -149,7 +149,7 @@ class SponsorAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(website__event__team__in=[organizer,])
+		return qs.filter(website__team__in=[organizer,])
 
 class FAQAdmin(admin.ModelAdmin):
 	list_display = ['question', 'answer', 'website']
@@ -159,7 +159,7 @@ class FAQAdmin(admin.ModelAdmin):
 		form = super(FAQAdmin, self).get_form(request, obj, **kwargs)
 		if not request.user.is_superuser:
 			organizer = Organizer.objects.get(user=request.user)
-			form.base_fields['website'].queryset = Website.objects.filter(event__team__in=[organizer,])
+			form.base_fields['website'].queryset = Website.objects.filter(team__in=[organizer,])
 		return form
 
 	def queryset(self, request):
@@ -167,7 +167,7 @@ class FAQAdmin(admin.ModelAdmin):
 		if request.user.is_superuser:
 			return qs
 		organizer = Organizer.objects.get(user=request.user)
-		return qs.filter(website__event__team__in=[organizer,])
+		return qs.filter(website__team__in=[organizer,])
 
 admin.site.register(Website, WebsiteAdmin)
 admin.site.register(Event, EventAdmin)
