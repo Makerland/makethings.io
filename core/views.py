@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render_to_response, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
 
 def index(request):
 	
-	return HttpResponse('global make things')
+	return render(request, "core/index.html", {})
 
