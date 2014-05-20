@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from django.contrib.auth import models as auth_models
-from django.utils.translation import ugettext_lazy as _
 from positions import PositionField
 
 
@@ -30,29 +29,30 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    event = models.ForeignKey('Event', null=True, blank=True, related_name='organizers')
+    twitter = models.CharField(max_length=50, null=False, blank=True)
+    photo = models.ImageField(upload_to='event/organizers/', null=True, blank=True)
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    class Meta:
+        verbose_name = 'Organizer'
+        verbose_name_plural = 'Organizers'
+
     def get_short_name(self):
         return self.first_name
 
-
-class Organizer(models.Model):
-    user = models.OneToOneField(User, null=False, blank=False)
-    name = models.CharField(max_length=255, null=False, blank=False)
-    twitter = models.CharField(max_length=50, null=True, blank=True)
-    photo = models.ImageField(upload_to='event/organizers/', null=True, blank=True)
-
-    def __unicode__(self):
-        return self.name
+    def get_full_name(self):
+        return u'{0} {1}'.format(self.first_name, self.last_name)
 
 
 class Event(models.Model):
     city = models.CharField(max_length=100, null=False, blank=False)
     country = models.CharField(max_length=100, null=False, blank=False)
-    main_organizer = models.ForeignKey(Organizer, null=False, blank=False, related_name="main_organizer")
+    main_organizer = models.ForeignKey(User, null=True, blank=True, related_name='+')
 
     def __unicode__(self):
         number = Event.objects.filter(city=self.city, country=self.country).count() + 1
@@ -69,7 +69,7 @@ class Website(models.Model):
     event = models.ForeignKey(Event, null=False, blank=False)
     url = models.CharField(max_length=100, null=False, blank=False)
     date = models.DateField(null=True, blank=True)
-    team = models.ManyToManyField(Organizer, null=True, blank=True, related_name="websites")
+    team = models.ManyToManyField(User, null=True, blank=True, related_name="websites")
     status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 
     #About section
@@ -125,7 +125,7 @@ class Website(models.Model):
 
 
 class WorkshopLeader(models.Model):
-    website = models.ForeignKey(Website, null=True, blank=False)
+    event = models.ForeignKey(Event, related_name='workshop_leaders')
     name = models.CharField(max_length=255, null=False, blank=False)
     bio = models.TextField(null=True, blank=True)
     photo = models.ImageField(upload_to='event/organizers/', null=False, blank=False)

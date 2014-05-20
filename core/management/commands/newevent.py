@@ -64,16 +64,17 @@ class Command(BaseCommand):
 			user.save()
 			user.groups.add(1)
 
-			organizer = Organizer.objects.create(user=user, name=u"{0} {1}".format(member['first_name'], member['last_name']))
 			if not main_organizer:
-				main_organizer = organizer
-			members.append(organizer)
+				main_organizer = user
+			members.append(user)
 			click.echo(u"{0} - email: {1} password: {2}".format(member['first_name'], member['email'], member['password']))
 
 		event = Event.objects.create(city=city, country=country, main_organizer=main_organizer)
 		website = Website.objects.create(event=event, url=url, date=date, status=0, about_title=u"Make Things in {0}".format(city), organizers_title=u"Make Things in {0} is organized by".format(city))
 		for member in members:
 			website.team.add(member)
+			member.event = event
+			member.save()
 
 		Workshop.objects.create(website=website, name='Sample workshop')
 		faq = FAQ.objects.create(question='Sample question?', answer='Sample answer')
