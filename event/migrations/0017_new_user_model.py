@@ -11,7 +11,10 @@ class Migration(DataMigration):
         try:
             for user in orm['auth.User'].objects.all():
                 new_user = orm.User()
-                new_user.email = user.email
+                if user.email:
+                    new_user.email = user.email
+                else:
+                    new_user.email = '{0}@localhost'.format(str(user.id))
                 new_user.password = user.password
                 new_user.is_active = user.is_active
                 new_user.is_superuser = user.is_superuser
