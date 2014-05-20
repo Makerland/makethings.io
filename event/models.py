@@ -42,6 +42,9 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name = 'Organizer'
         verbose_name_plural = 'Organizers'
 
+    def __unicode__(self):
+        return u'{0} ({1})'.format(self.get_full_name(), self.email)
+
     def get_short_name(self):
         return self.first_name
 
@@ -55,8 +58,7 @@ class Event(models.Model):
     main_organizer = models.ForeignKey(User, null=True, blank=True, related_name='+')
 
     def __unicode__(self):
-        number = Event.objects.filter(city=self.city, country=self.country).count() + 1
-        return u"{0}, {1} #{2}".format(self.city, self.country, number)
+        return u"{0}, {1} #{2}".format(self.city, self.country)
 
 
 class Website(models.Model):
@@ -121,7 +123,7 @@ class Website(models.Model):
         return self.name()
 
     def name(self):
-        return u"{0} website".format(self.event)
+        return u"Website for {0}, {1}".format(self.date, self.event)
 
 
 class WorkshopLeader(models.Model):
