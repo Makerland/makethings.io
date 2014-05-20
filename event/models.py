@@ -58,7 +58,7 @@ class Event(models.Model):
     main_organizer = models.ForeignKey(User, null=True, blank=True, related_name='+')
 
     def __unicode__(self):
-        return u"{0}, {1} #{2}".format(self.city, self.country)
+        return u"{0}, {1}".format(self.city, self.country)
 
 
 class Website(models.Model):
