@@ -8,7 +8,14 @@ class Migration(DataMigration):
 
     def forwards(self, orm):
         for o in orm.Organizer.objects.all():
-            o.user2 = orm.User.objects.get(email=o.user.email)
+            try:
+                user = orm.User.objects.get(email=o.user.email)
+            except orm.User.DoesNotExist:
+                try:
+                    user = orm.User.objects.get(email='{0}@localhost'.format(o.user.id))
+                except orm.User.DoesNotExist:
+                    user = orm.User.objects.get(id=o.user.id)
+            o.user2 = user
             o.save()
 
     def backwards(self, orm):
