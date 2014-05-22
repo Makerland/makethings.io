@@ -279,7 +279,7 @@
 
 					<div class="col-md-3">
 						{% if organizer.photo %}<p class="photo"><div class="circle" style="background: url('{{ organizer.photo.url }}') center no-repeat; background-size: 160px auto"></div></p>{% endif %}
-						<p><b>{{ organizer.name }}</b></p>
+						<p><b>{{ organizer.get_full_name }}</b></p>
 						{% if organizer.twitter %}<p><a href="http://twitter.com/{{ organizer.twitter }}" target="_blank">@{{ organizer.twitter }}</a></p>{% endif %}
 					</div>
 
