@@ -1,0 +1,40 @@
+{% extends 'core/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- About -->
+<div class="container">
+    <div id="about" class="row">
+        <div class="col-md-5 logo"><img src="{% static 'core/img/logo.png' %}" /></div>
+        <div class="col-md-7 about">
+            <h1>Make Things in your city!</h1>
+            <p>Make Things is a series of free workshops for people who want to dive into the world of hardware, learn about the Internet of Things, programming, DIY and electronics.
+                Make Things is also a global community of Makers - people who love technology, but also love to create, build and solve their own problems. </p>
+        </div>
+    </div>
+</div>
+
+<div id="form">
+    <div id="wufoo-r1215nlo1jn1zaa">
+        Fill out my <a href="https://makerland.wufoo.com/forms/r1215nlo1jn1zaa">online form</a>.
+    </div>
+</div>
+
+<script type="text/javascript">var r1215nlo1jn1zaa;(function(d, t) {
+    var s = d.createElement(t), options = {
+    'userName':'makerland',
+    'formHash':'r1215nlo1jn1zaa',
+    'autoResize':true,
+    'height':'1220',
+    'async':true,
+    'host':'wufoo.com',
+    'header':'show',
+    'ssl':true};
+    s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+    s.onload = s.onreadystatechange = function() {
+    var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+    try { r1215nlo1jn1zaa = new WufooForm();r1215nlo1jn1zaa.initialize(options);r1215nlo1jn1zaa.display(); } catch (e) {}};
+    var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+    })(document, 'script');
+</script>
+{% endblock %}

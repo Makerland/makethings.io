@@ -16,8 +16,10 @@ if settings.DEBUG == False:
 	)
 
 urlpatterns += patterns('',
+    url(r'^inyourcity', 'core.views.inyourcity', name='inyourcity'),
 	url(r'^(?P<city>[\w\d]+)', 'event.views.index', name='event'),
 	url(r'^$', 'core.views.index', name='index'),
+
 )
 
 
