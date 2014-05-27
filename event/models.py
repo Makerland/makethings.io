@@ -70,7 +70,7 @@ class Website(models.Model):
 
     event = models.ForeignKey(Event, null=False, blank=False)
     url = models.CharField(max_length=100, null=False, blank=False)
-    date = models.DateField(null=True, blank=True)
+    date = models.CharField(max_length=100, null=True, blank=True)
     team = models.ManyToManyField(User, null=True, blank=True, related_name="websites")
     status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 

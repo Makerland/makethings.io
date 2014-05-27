@@ -61,7 +61,7 @@
 	<div id="dateplace">
 	  	<div class="container">
 	  		<div class="box">
-	  			<h2>{{ website.date|date:"d M, Y" }}</h2>
+	  			<h2>{{ website.date }}</h2>
 	  			<h2>{{ website.location_name }}</h2>
 	  			{% if website.location_button %}
 					<a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
@@ -171,7 +171,7 @@
                     {% if website.agenda_entries.count == 0 %}
                         Agenda will be announced soon.
                     {% else %}
-                        <div class="head">{{ website.date|date:"D, d M Y" }}</div>
+                        <div class="head">{{ website.date }}</div>
                         <ul class="schedule">
                             {% for agenda in website.agenda_entries.all %}
                             <li class="{% if agenda.is_highlighted %}highlighted{% elif agenda.is_break %}coffeebreak{% endif %}{% if agenda.workshop %} workshop{% endif %}">
