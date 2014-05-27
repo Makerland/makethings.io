@@ -106,12 +106,12 @@
 	</div>
 	{% endif %}
 
-	{% if website.workshops_title and website.workshop_set.count > 0 %}
+	{% if website.workshops_title %}
 	<!-- Workshops -->
 	<div class="container">
 		<div id="workshops">
 			<div style="text-align: center; margin-bottom: 40px;"><h2>{{ website.workshops_title }}</h2></div>
-
+            {% if website.workshop_set.count > 0 %}
             {% for workshop in website.workshop_set.all %}
 			<div class="row" id="{{ workshop.name|slugify }}">
 				<div class="col-md-4">
@@ -136,6 +136,9 @@
 				</div>
 			</div>
             {% endfor %}
+            {% else %}
+                <div style="text-align: center; margin-bottom: 30px;">Workshop details will be announced soon.</div>
+            {% endif %}
 		</div>
 	</div>
 	{% endif %}
@@ -156,7 +159,7 @@
 	</div>
 	{% endif %}
 
-    {% if website.agenda_entries.count > 0 or website.sponsor_set.count > 0 %}
+
 	<!-- Agenda / Sponsors -->
 	<div class="container">
 		<div class="row" style="padding: 30px 0">
@@ -187,27 +190,30 @@
 				</div>
 			</div>
 
-            {% if website.sponsor_set.count > 0 %}
 			<div class="col-md-4" id="sponsors">
 				<h2>{{ website.sponsors_title }}</h2>
 				{{ website.sponsors_description }}
 
-                {% for sponsor in website.sponsor_set.all %}
-				<p>
-					<a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
-                    {% if sponsor.description %}
-                    <br />{{ sponsor.description }}
-                    {% endif %}
-				</p>
-                {% endfor %}
+                {% if website.sponsor_set.count > 0 %}
+                    {% for sponsor in website.sponsor_set.all %}
+                    <p>
+                        <a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
+                        {% if sponsor.description %}
+                        <br />{{ sponsor.description }}
+                        {% endif %}
+                    </p>
+                    {% endfor %}
+                {% else %}
+                    <p><img src="{% static 'event/img/heart.png' %}"></p>
+                {% endif %}
 			</div>
-            {% endif %}
+
 
 		</div>
         <div class="cls"></div>
 
 	</div>
-    {% endif %}
+
 
 	<!-- Makerland -->
 	<div id="makerland">
@@ -216,7 +222,8 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h2>Makerland</h2>
-						<p>Make Things is a part of bigger community of Makers: <a href="http://makerland.org/" target="_blank">Makerland</a>. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.  </p>
+						<p>Make Things is a part of bigger community of Makers: <a href="http://makerland.org/" target="_blank">Makerland</a>, the biggest European Maker Conference. Makerland takes place every year in Warsaw, Poland, where 300
+                            amazing people come to meet, make and have fun. Makerland aims to make it as easy as possible for people to dive into hardware, really understand technology and start Making Things.</p>
 						<p style="margin-top: 30px"><a href="http://makerland.org/" target="_blank" class="button">Check out Makerland</a></p>
 					</div>
 					<div class="col-md-6">

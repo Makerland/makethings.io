@@ -106,7 +106,7 @@ class Website(models.Model):
     #Agenda / Sponsors section
     agenda_title = models.CharField(max_length=255, null=False, blank=False, default="Agenda")
     sponsors_title = models.CharField(max_length=255, null=False, blank=False, default="Sponsors")
-    sponsors_description = models.CharField(max_length=255, null=True, blank=True, default="We couldn't be here without the amazing support of our sponsors:")
+    sponsors_description = models.CharField(max_length=255, null=True, blank=True, default="We're looking for sponsors! Want to help make MAKE THINGS in ... a success? Contact us: ...@makethings.io")
 
     #Social section
     newsletter_title = models.CharField(max_length=255, null=False, blank=False, default="Stay in touch:")
