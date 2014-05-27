@@ -58,7 +58,7 @@
 	</div>
 
 	<!-- Date & place -->
-	<div id="dateplace">
+	<div id="dateplace"{% if website.location_photo %} style="background-image: url({{ website.location_photo.url }});"{% endif %}>
 	  	<div class="container">
 	  		<div class="box">
 	  			<h2>{{ website.date }}</h2>
@@ -89,7 +89,7 @@
 
 	{% if website.apply_title %}
 	<!-- Apply for ticket -->
-	<div id="apply">
+	<div id="apply"{% if website.apply_photo %} style="background-image: url({{ website.apply_photo.url }});"{% endif %}>
 		<div class="overlay">
 			<div class="container">
 				<div class="row">
@@ -145,7 +145,7 @@
 
 	{% if website.howitworks_title %}
 	<!-- Async -->
-	<div id="async">
+	<div id="async"{% if website.howitworks_photo %} style="background-image: url({{ website.howitworks_photo.url }});"{% endif %}>
 	  	<div class="overlay">
 			<div class="container">
 				<div class="row">
@@ -216,7 +216,7 @@
 
 
 	<!-- Makerland -->
-	<div id="makerland">
+	<div id="makerland"{% if website.makerland_photo %} style="background-image: url({{ website.makerland_photo.url }});"{% endif %}>
 	  	<div class="overlay">
 			<div class="container">
 				<div class="row">
@@ -254,7 +254,7 @@
     {% endif %}
 
 	<!-- Social / Newsletter -->
-	<div id="social">
+	<div id="social"{% if website.social_photo %} style="background-image: url({{ website.social_photo.url }});"{% endif %}>
 	  	<div class="overlay">
 			<div class="container">
 				<div class="row">

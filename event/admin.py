@@ -107,10 +107,13 @@ class WebsiteAdmin(admin.ModelAdmin):
 		('Organizers section', {
 			'classes': ('suit-tab suit-tab-content',),
 		    'fields': ['organizers_title']
-		})
-
+		}),
+        ('Background photos', {
+			'classes': ('suit-tab suit-tab-photos',),
+			'fields': ['location_photo', 'apply_photo', 'howitworks_photo', 'makerland_photo', 'social_photo']
+		}),
 	]
-	suit_form_tabs = (('general', 'General settings'), ('content', 'Content on website'))
+	suit_form_tabs = (('general', 'General settings'), ('content', 'Content on website'), ('photos', 'Background photos'), )
 
 	def get_form(self, request, obj=None, **kwargs):
 		form = super(WebsiteAdmin, self).get_form(request, obj, **kwargs)
