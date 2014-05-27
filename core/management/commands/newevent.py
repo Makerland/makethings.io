@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import random
 import string
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.management.base import BaseCommand, CommandError
 import click
 
@@ -62,8 +62,11 @@ class Command(BaseCommand):
 										is_staff=True)
 			user.set_password(member['password'])
 			user.save()
-			user.groups.add(1)
-
+			try:
+				user.groups.add(1)
+			except:
+				group = Group.objects.create(name='Organizers')
+				user.groups.add(1)
 			if not main_organizer:
 				main_organizer = user
 			members.append(user)
