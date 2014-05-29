@@ -169,7 +169,7 @@
 
 				<div class="day" id="first">
                     {% if website.agenda_entries.count == 0 %}
-                        <p><img src="{% static 'event/img/agenda_soon.png' %}"></p>
+                        <img src="{% static 'event/img/agenda_soon.png' %}">
                     {% else %}
                         <div class="head">{{ website.date }}</div>
                         <ul class="schedule">
