@@ -180,12 +180,14 @@
                                     {% if agenda.workshop %}
                                         <a href="#{{ agenda.workshop.name|slugify }}">Workshop: {{ agenda.workshop.name }}</a>
                                     {% else %}
-                                        <p><img src="{% static 'event/img/heart.png' %}"></p>
+                                        {{ agenda.title }}
                                     {% endif %}
                                 </span>
                             </li>
                             {% endfor %}
                         </ul>
+                    {% else %}
+						<p><img src="{% static 'event/img/agenda_soon.png' %}"></p>
                     {% endif %}
 				</div>
 			</div>
