@@ -98,10 +98,5 @@ class Command(BaseCommand):
             member.event = event
             member.save()
 
-        Workshop.objects.create(website=website, name='Sample workshop')
-        faq = FAQ.objects.create(question='Sample question?', answer='Sample answer')
-        faq.websites.add(website)
-        AgendaEntry.objects.create(website=website, start_time='09:00', title='Start!', is_highlighted=True, is_break=False)
-
         click.echo(u"Website is ready here: http://makethings.io/{0}".format(url))
         click.echo("Congrats on yet another event!")
