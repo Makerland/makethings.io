@@ -1,0 +1,71 @@
+// --- faq ---------------------------------------------------------------------
+
+.faq {
+  @extend %section;
+}
+
+.faq__items {
+  @extend %unstyled;
+}
+
+.faq__item {
+  margin: 2.8em 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child,
+  &:last-child p {
+    margin-bottom: 0;
+  }
+}
+
+.faq__question {
+  margin: 0 0 .5em;
+}
+
+.faq__answer {
+  margin-top: 0;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .faq__items {
+    margin-left: -4%;
+  }
+
+  .faq__item {
+    float: left;
+    width: 46%;
+    margin: 1.4em 0 1.4em 4%;
+
+    &:nth-child(2n+1) {
+      clear: left;
+    }
+
+    &:first-child {
+      margin-top: 1.4em;
+    }
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .faq__items {
+    margin-left: -3%;
+  }
+
+  .faq__item {
+    width: 30%;
+    margin-left: 3%;
+
+    &:nth-child(2n+1) {
+      clear: none;
+    }
+
+    &:nth-child(3n+1) {
+      clear: left;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+// --- buttons -----------------------------------------------------------------
+
+.button {
+  @include box-sizing(border-box);
+  @extend %headline;
+  position: relative;
+  display: inline-block;
+  padding-top: 6px;
+  padding-right: 7px;
+  background: image-url('bg-button.png');
+  color: $color-white;
+  font-size: 32px;
+  line-height: 56px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba($color-black, .75);
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 15px;
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+
+  &:before {
+    left: -15px;
+    background-image: image-url('bg-button-before.png');
+  }
+
+  &:after {
+    right: -15px;
+    background-image: image-url('bg-button-after.png');
+  }
+
+  &:hover {
+    color: $color-white;
+    text-decoration: none;
+  }
+}
+
+// --- buttons: mixins ---------------------------------------------------------
+
+@mixin button-width-auto () {
+  display: inline-block !important;
+  width: auto;
+  margin-left: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}

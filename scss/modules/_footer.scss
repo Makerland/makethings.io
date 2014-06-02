@@ -1,0 +1,20 @@
+// --- footer ------------------------------------------------------------------
+
+.footer-wrapper {
+  height: 230px;
+  background: image-url('bg-dots.png') top center repeat-x;
+}
+
+.footer {
+  @include box-sizing(border-box);
+  height: 100%;
+  padding-top: 60px;
+  background: image-url('bg-footer.png') -100px 11px no-repeat;
+  background-size: cover;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-large) {
+  float: right;
+}

@@ -1,0 +1,35 @@
+// --- contact -----------------------------------------------------------------
+
+.contact {
+  @extend %section-background;
+  @extend %section-sharpen;
+  color: $color-white;
+}
+
+.contact__headline:first-child {
+  margin-top: 0;
+}
+
+.contact__facebook {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.contact__twitter {
+  display: block;
+  margin: 1.4em auto 0;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .contact__social-media {
+    @include clearfix();
+  }
+
+  .contact__facebook,
+  .contact__twitter {
+    float: left;
+  }
+}

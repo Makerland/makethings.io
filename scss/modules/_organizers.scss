@@ -1,0 +1,59 @@
+// --- organizers --------------------------------------------------------------
+
+.organizers {
+  @extend %section;
+}
+
+.organizers__headline {
+  margin-top: 0;
+}
+
+.organizers__items {
+  @extend %unstyled;
+}
+
+.organizers__item {
+  margin-top: 2.8em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.organizer {
+  font-size: 18px;
+  text-align: center;
+}
+
+.organizer__icon {
+  @include border-radius(100%);
+  display: block;
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.organizer__name {
+  margin: .7em 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .organizers__item {
+    float: left;
+    width: 50%;
+    margin: 1.4em 0;
+
+    &:first-child {
+      margin-top: 1.4em;
+    }
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .organizers__item {
+    width: 25%;
+  }
+}
