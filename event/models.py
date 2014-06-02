@@ -85,6 +85,7 @@ class Website(models.Model):
     location_button = models.CharField(max_length=255, null=True, blank=True, default="Get directions »", help_text="Leave empty to hide button")
     location_url = models.URLField(null=True, blank=True, help_text="Google maps link")
     location_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of Date/Location section")
+    location_description = models.TextField(null=True, blank=True, default="")
 
     #Values section
     value_1 = models.CharField(max_length=255, null=True, blank=True, default="<b>Make Things</b> aims to give everyone a chance to start their journey with hardware.", help_text="Leave empty to hide section. HTML allowed.")
@@ -125,6 +126,7 @@ class Website(models.Model):
 
     mailchimp_id = models.CharField(max_length=100, null=True, blank=True)
     facebook_url = models.URLField(null=True, blank=True)
+    twitter_handle = models.CharField(max_length=200, null=True, blank=True, default='')
 
     def __unicode__(self):
         return self.name()
