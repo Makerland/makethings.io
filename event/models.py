@@ -41,6 +41,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     class Meta:
         verbose_name = 'Organizer'
         verbose_name_plural = 'Organizers'
+        ordering = ('id', )
 
     def __unicode__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)
