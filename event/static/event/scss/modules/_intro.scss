@@ -11,7 +11,7 @@ $intro-logo-width: 399px;
 
 .intro__logo {
   display: block;
-  margin: 0 50px 0 40px;
+
 }
 
 .intro__text {
@@ -35,6 +35,7 @@ $intro-logo-width: 399px;
   .intro__logo {
     float: left;
     width: $intro-logo-width;
+    margin: 0 50px 0 40px;
   }
 
   .intro__text {
