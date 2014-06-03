@@ -3,16 +3,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  {% block headers %}
   <title>Make Things in {{ website.event.city }}</title>
   <meta name="description" content="Make Things in {{ website.event.city }} is a free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.">
   <meta name="keywords" content="internet of things, IoT, hardware, maker, maker movement, drones, ar drone, programming, electronics, DIY, arduino, rasbperry pi, 3d printing, 3d modeling, event, free, workshop, make things, makerland">
+  {% endblock %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{% static 'event/img/favicon.ico' %}" rel="shortcut icon">
-
   <link rel="stylesheet" href="{% static 'event/css/main.css' %}" media="screen">
 </head>
 <body class="no-js">
 
+{% block navigation %}
   <header class="header">
     <div class="l-container">
       <a href="/{{ website.url }}" class="header__link">Make Things in {{ website.event.city }}!</a>
@@ -52,7 +54,9 @@
       </nav>
     </div>
   </header>
+{% endblock %}
 
+{% block content %}
   <section id="intro" class="intro">
     <div class="l-container">
       <img src="{% static 'event/img/logo.png' %}" class="intro__logo" alt="Make Things's logo">
@@ -321,6 +325,9 @@
   </section>
   {% endif %}
 
+{% endblock %}
+
+{% block footer %}
   <div class="footer-wrapper">
     <footer class="footer">
       <div class="l-container">
@@ -332,6 +339,7 @@
       </div>
     </footer>
   </div>
+{% endblock %}
 
   <script src="{% static 'event/js/min/vendors-ck.js' %}" async></script>
   <script src="{% static 'event/js/min/main-ck.js' %}" async></script>
