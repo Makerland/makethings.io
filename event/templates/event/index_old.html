@@ -1,0 +1,346 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <title>Make Things in {{ website.event.city }}</title>
+  <meta name="description" content="Make Things in {{ website.event.city }} is a free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.">
+  <meta name="keywords" content="internet of things, IoT, hardware, maker, maker movement, drones, ar drone, programming, electronics, DIY, arduino, rasbperry pi, 3d printing, 3d modeling, event, free, workshop, make things, makerland">
+  <link href="{% static 'event/img/favicon.ico' %}" rel="shortcut icon">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+  <link rel="stylesheet" type="text/css" href="{% static 'event/css/bootstrap.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'event/css/style.css' %}" media="screen">
+  <script type="text/javascript" src="{% static 'event/js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'event/js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'event/js/makethings.js' %}"></script>
+</head>
+<body>
+  	<!-- Fixed navbar -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="/{{ website.url }}">Make Things in {{ website.event.city }}!</a>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li><a href="#about">About</a></li>
+			{% if website.apply_title %}<li><a href="#apply"><b>Get a ticket!</b></a></li>{% endif %}
+			{% if website.workshop_set.count > 0 and website.workshops_title %}<li><a href="#workshops">Workshops</a></li>{% endif %}
+			{% if website.agenda_entries.count > 0 %}<li><a href="#agenda">Agenda</a></li>{% endif %}
+			{% if website.sponsor_set.count > 0 or website.sponsors_title %}<li><a href="#sponsors">Sponsors</a></li>{% endif %}
+			{% if website.faqs.count > 0 %}<li><a href="#faq">FAQ</a></li>{% endif %}
+			<li class="pull-right"><a href="/" style="text-decoration: underline;">Make Things in your city?</a></li>
+		  </ul>
+		</div><!--/.nav-collapse -->
+	  </div>
+	</div>
+
+
+	<!-- About -->
+	<div class="container">
+	  	<div id="about" class="row">
+	  		<div class="col-md-5 logo"><img src="{% static 'event/img/logo.png' %}" /></div>
+	  		<div class="col-md-7 about">
+		  		<h1>{{ website.about_title }}</h1>
+		  		<p>{{ website.about_description|safe }}</p>
+		  		{% if website.about_button %}
+					<p class="buttons"><a class="button" href="{{ website.about_button_url }}">{{ website.about_button }}</a></p>
+				{% endif %}
+		  	</div>
+	  	</div>
+	</div>
+
+	<!-- Date & place -->
+	<div id="dateplace"{% if website.location_photo %} style="background-image: url({{ website.location_photo.url }});"{% endif %}>
+	  	<div class="container">
+	  		<div class="box">
+	  			<h2>{{ website.date }}</h2>
+	  			<h2>{{ website.location_name }}</h2>
+	  			{% if website.location_button %}
+					<a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
+				{% endif %}
+	  		</div>
+	  	</div>
+	</div>
+
+	{% if website.value_1 and website.value_2 and website.value_3 %}
+	<!-- Value proposition -->
+	<div class="container">
+	  	<div id="value" class="row">
+	  		<div class="col-md-4">
+	  			{{ website.value_1|safe }}
+	  		</div>
+	  		<div class="col-md-4">
+	  			{{ website.value_2|safe }}
+	  		</div>
+	  		<div class="col-md-4">
+	  			{{ website.value_3|safe }}
+	  		</div>
+	  	</div>
+	</div>
+	{% endif %}
+
+	{% if website.apply_title %}
+	<!-- Apply for ticket -->
+	<div id="apply"{% if website.apply_photo %} style="background-image: url({{ website.apply_photo.url }});"{% endif %}>
+		<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h2>{{ website.apply_title }}</h2>
+						<p>{{ website.apply_description|safe }}</p>
+						{% if website.apply_button %}
+							<p class="buttons"><a class="button" href="{{ website.apply_button_url }}">{{ website.apply_button }}</a></p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+	{% if website.workshops_title %}
+	<!-- Workshops -->
+	<div class="container">
+		<div id="workshops">
+			<div style="text-align: center; margin-bottom: 40px;"><h2>{{ website.workshops_title }}</h2></div>
+            {% if website.workshop_set.count > 0 %}
+            {% for workshop in website.workshop_set.all %}
+			<div class="row" id="{{ workshop.name|slugify }}">
+				<div class="col-md-4">
+					<div class="icon box-1">
+						{% if workshop.icon %}<img src="{{ workshop.icon.url }}" />{% endif %}
+					</div>
+				</div>
+				<div class="col-md-4 description">
+					<h4>{{ workshop.name }}</h4>
+					<p>{{ workshop.description|safe }}</p>
+				</div>
+				<div class="col-md-4">
+                    {% for leader in workshop.leaders.all %}
+                    <div class="leader">
+                        <div class="photo" style="background-image: url({{ leader.photo.url }})"></div>
+                        <div class="bio">
+                            <p><b>{{ leader.name }}</b></p>
+                            <p>{{ leader.bio }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+				</div>
+			</div>
+            {% endfor %}
+            {% else %}
+                <div style="text-align: center; margin-bottom: 30px;">Workshop details will be announced soon.</div>
+            {% endif %}
+		</div>
+	</div>
+	{% endif %}
+
+	{% if website.howitworks_title %}
+	<!-- Async -->
+	<div id="async"{% if website.howitworks_photo %} style="background-image: url({{ website.howitworks_photo.url }});"{% endif %}>
+	  	<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<h2>{{ website.howitworks_title }}</h2>
+						<p>{{ website.howitworks_description|safe }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+
+	<!-- Agenda / Sponsors -->
+	<div class="container">
+		<div class="row" style="padding: 30px 0">
+
+			<div class="col-md-8" id="agenda">
+				<h2>{{ website.agenda_title }}</h2>
+
+				<div class="day" id="first">
+                    {% if website.agenda_entries.count == 0 %}
+                        <p><img src="{% static 'event/img/agenda_soon.png' %}"></p>
+                    {% else %}
+                        <div class="head">{{ website.date }}</div>
+                        <ul class="schedule">
+                            {% for agenda in website.agenda_entries.all %}
+                            <li class="{% if agenda.is_highlighted %}highlighted{% elif agenda.is_break %}coffeebreak{% endif %}{% if agenda.workshop %} workshop{% endif %}">
+                                <span>{{ agenda.start_time|date:"G:i" }}{% if agenda.end_time %} - {{ agenda.end_time|date:"G:i" }}{% endif %}</span>
+                                <span>
+                                    {% if agenda.workshop %}
+                                        <a href="#{{ agenda.workshop.name|slugify }}">Workshop: {{ agenda.workshop.name }}</a>
+                                    {% else %}
+                                        {{ agenda.title }}
+                                    {% endif %}
+                                </span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+				</div>
+			</div>
+
+			<div class="col-md-4" id="sponsors">
+				<h2>{{ website.sponsors_title }}</h2>
+				{{ website.sponsors_description }}
+
+                {% if website.sponsor_set.count > 0 %}
+                    {% for sponsor in website.sponsor_set.all %}
+                    <p>
+                        <a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
+                        {% if sponsor.description %}
+                        <br />{{ sponsor.description }}
+                        {% endif %}
+                    </p>
+                    {% endfor %}
+                {% else %}
+                    <p><img src="{% static 'event/img/heart.png' %}"></p>
+                {% endif %}
+			</div>
+
+
+		</div>
+        <div class="cls"></div>
+
+	</div>
+
+
+	<!-- Makerland -->
+	<div id="makerland"{% if website.makerland_photo %} style="background-image: url({{ website.makerland_photo.url }});"{% endif %}>
+	  	<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h2>Makerland</h2>
+						<p>Make Things is a part of bigger community of Makers: <a href="http://makerland.org/" target="_blank">Makerland</a>, the biggest European Maker Conference. Makerland takes place every year in Warsaw, Poland, where 300
+                            amazing people come to meet, make and have fun. Makerland aims to make it as easy as possible for people to dive into hardware, really understand technology and start Making Things.</p>
+						<p style="margin-top: 30px"><a href="http://makerland.org/" target="_blank" class="button">Check out Makerland</a></p>
+					</div>
+					<div class="col-md-6">
+						<h2>Make Things in your city?</h2>
+						<p>You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends with a global help from Makerland team. Help us spread the joy of making things and bring Make Things event to your city.  </p>
+						<p style="margin-top: 30px"><a href="http://makethings.io/" target="_blank" class="button">Go to Make Things</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    {% if website.faqs.count > 0 %}
+	<!-- FAQ -->
+	<div class="container">
+		<div id="faq">
+            <div class="row">
+            {% for faq in website.faqs.all %}
+				<div class="col-md-4">
+					<p><b>{{ faq.question }}</b></p>
+					<p>{{ faq.answer }}</p>
+				</div>
+                {% if forloop.counter|divisibleby:"3" %}</div><div class="row">{% endif %}
+            {% endfor %}
+			</div>
+		</div>
+	</div>
+    {% endif %}
+
+	<!-- Social / Newsletter -->
+	<div id="social"{% if website.social_photo %} style="background-image: url({{ website.social_photo.url }});"{% endif %}>
+	  	<div class="overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h2>{{ website.newsletter_title }}</h2>
+						<p>{{ website.newsletter_description|safe }}</p>
+                        <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id={{ website.mailchimp_id }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						<p><input type="text" name="NAME" class="required" placeholder="Your name" /> <input type="email" name="EMAIL" class="required email" placeholder="Your e-mail" /></p>
+						<p style="margin-top: 30px"><button class="button">Subscribe</button></p>
+                         </form>
+                        {% if website.facebook_url %}
+						    <h2 style="margin-top: 70px">{{ website.social_title }}</h2>
+						    <div class="fb-like-box" data-href="{{ website.facebook_url }}" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+                        {% endif %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% if website.organizers_title %}
+	<!-- Team -->
+	<div class="container">
+		<div id="team">
+			<h2>{{ website.organizers_title }}</h2>
+			<div class="row">
+				{% for organizer in website.team.all %}
+
+					<div class="col-md-3">
+						{% if organizer.photo %}<p class="photo"><div class="circle" style="background: url('{{ organizer.photo.url }}') center no-repeat; background-size: 160px auto"></div></p>{% endif %}
+						<p><b>{{ organizer.get_full_name }}</b></p>
+						{% if organizer.twitter %}<p><a href="http://twitter.com/{{ organizer.twitter }}" target="_blank">@{{ organizer.twitter }}</a></p>{% endif %}
+					</div>
+
+					{% if forloop.counter == 2 %}</div><div class="row">{% endif %}
+				{% endfor %}
+				
+			</div>
+
+		</div>
+	</div>
+	{% endif %}
+
+	<footer>
+		<div class="wires">
+			<div class="container">
+				<div class="left">
+					Contact us: <br /> <a href="mailto:{{ website.event.city|lower }}@makethings.io">{{ website.event.city|lower }}@makethings.io</a><br /><br />
+
+					{% if website.facebook_url %}<div class="fb-like" data-href="{{ website.facebook_url }}" data-send="false" data-width="330" data-show-faces="true"></div>{% endif %}
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- fb -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=345022845576638";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+	<!-- twitter -->
+	    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<!-- g+ -->
+        <script type="text/javascript">
+            (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+        </script>
+    <!-- analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-40028264-5', 'makethings.io');
+          ga('send', 'pageview');
+        </script>
+</body>
+</html>
