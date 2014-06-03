@@ -75,6 +75,9 @@ $agenda-items-gap: 25px;
   background: $color-blue;
   color: $color-white;
 }
+.agenda__item--break {
+  background: $color-gray;
+}
 
 .agenda__item-time,
 .agenda__item-name {
