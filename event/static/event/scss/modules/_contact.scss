@@ -4,6 +4,7 @@
   @extend %section-background;
   @extend %section-sharpen;
   color: $color-white;
+  background-image: image-url('bg-contact.jpg');
 }
 
 .contact__headline:first-child {

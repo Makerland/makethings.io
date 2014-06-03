@@ -6,12 +6,17 @@ $intro-logo-width: 399px;
 
 .intro {
   @extend %section;
-  padding-top: 70px;
+  padding-top: 90px;
 }
 
 .intro__logo {
   display: block;
-  margin: 0 auto;
+  margin: 0 50px 0 40px;
+}
+
+.intro__text {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
 .intro__button {
@@ -33,7 +38,7 @@ $intro-logo-width: 399px;
   }
 
   .intro__text {
-    @include calc('width', "100% - #{$intro-logo-width} - 60px");
+    @include calc('width', "100% - #{$intro-logo-width} - 90px");
     float: right;
 
     h1 {

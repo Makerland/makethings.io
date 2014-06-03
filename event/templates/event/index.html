@@ -1,33 +1,52 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Make Things in Berlin</title>
+  <title>Make Things in {{ website.event.city }}</title>
+  <meta name="description" content="Make Things in {{ website.event.city }} is a free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.">
+  <meta name="keywords" content="internet of things, IoT, hardware, maker, maker movement, drones, ar drone, programming, electronics, DIY, arduino, rasbperry pi, 3d printing, 3d modeling, event, free, workshop, make things, makerland">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/main.css" media="screen">
+  <link href="{% static 'event/img/favicon.ico' %}" rel="shortcut icon">
+
+  <link rel="stylesheet" href="{% static 'event/css/main.css' %}" media="screen">
 </head>
 <body class="no-js">
 
   <header class="header">
     <div class="l-container">
-      <a href="http://www.makethings.io/berlin" class="header__link">Make Things in Berlin!</a>
+      <a href="/{{ website.url }}" class="header__link">Make Things in {{ website.event.city }}!</a>
       <a href="#" id="toggle-nav" class="header__nav-link">&#x2261;</a>
       <nav id="nav" class="nav-bar">
         <ul class="nav-bar__items">
           <li class="nav-bar__item">
             <a class="nav-bar__link" data-scroll href="#intro">About</a>
           </li>
+          {% if website.apply_title %}
           <li class="nav-bar__item nav-bar__item--featured">
             <a class="nav-bar__link" data-scroll href="#tickets">Get a ticket!</a>
           </li>
+          {% endif %}
+          {% if website.workshop_set.count > 0 and website.workshops_title %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#workshops">Workshops</a>
+          </li>
+          {% endif %}
+          {% if website.agenda_entries.count > 0 %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#agenda">Agenda</a>
+          </li>
+          {% endif %}
           <li class="nav-bar__item">
             <a class="nav-bar__link" data-scroll href="#sponsors">Sponsors</a>
           </li>
+          {% if website.faqs.count > 0 %}
           <li class="nav-bar__item">
             <a class="nav-bar__link" data-scroll href="#faq">FAQ</a>
           </li>
+          {% endif %}
           <li class="nav-bar__item nav-bar__item--push">
-            <a class="nav-bar__link" href="http://www.makethings.io/">Make Things in your city?</a>
+            <a class="nav-bar__link" href="/">Make Things in your city?</a>
           </li>
         </ul>
       </nav>
@@ -36,142 +55,193 @@
 
   <section id="intro" class="intro">
     <div class="l-container">
-      <img src="/img/logo.png" class="intro__logo" alt="Make Things's logo">
+      <img src="{% static 'event/img/logo.png' %}" class="intro__logo" alt="Make Things's logo">
       <div class="intro__text">
-        <h1>Make Things in Berlin</h1>
+        <h1>{{ website.about_title }}</h1>
         <p>
-          Welcome to the free, one-day event that will get you excited and teach you everything you want to know about
-          the world of hardware, Internet of Things and Maker Movement.<br><br>
-          <b>Application for the event will open on 13th June 2014.</b>
+          {{ website.about_description|safe }}
         </p>
-        <!-- <a href="#tickets" class="button intro__button" data-scroll>Apply for a pass</a> -->
+        {% if website.about_button %}
+             <a href="{{ website.about_button_url }}" class="button intro__button" data-scroll>{{ website.about_button }}</a>
+        {% endif %}
       </div>
     </div>
   </section>
 
-  <section id="location" class="location" style="background-image: url(/img/bg-location.jpg)">
+  <section id="location" class="location"{% if website.location_photo %} style="background-image: url({{ website.location_photo.url }});"{% endif %}>
     <div class="l-container">
       <div class="location__details">
         <div class="location__details-text">
-          <div>July 26th 2014</div>
-          <div>Location: TBA</div>
-          <!-- <a href="#">Get directions &raquo;</a> -->
+          <div>{{ website.date }}</div>
+          <div>{{ website.location_name }}</div>
+          {% if website.location_button %}
+                <a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
+          {% endif %}
         </div>
       </div>
     </div>
   </section>
 
+  {% if website.value_1 or website.value_2 or website.value_3 %}
   <section class="values">
     <div class="l-container">
       <ul class="values__items">
         <li class="values__item">
-          <b>Make Things</b> aims to give everyone a chance to start their journey with hardware.
+          {{ website.value_1|safe }}
         </li>
         <li class="values__item">
-          Come &amp; learn about <b>3D printing</b>, <b>Arduino</b>, <b>Raspberry Pi</b>, <b>drones</b>,
-          <b>robots and DIY</b> in a friendly enviroment.
+          {{ website.value_2|safe }}
         </li>
         <li class="values__item">
-          Become a Maker! Be a part of <b>global community of Makers</b>. Start making the future.
+          {{ website.value_3|safe }}
         </li>
       </ul>
     </div>
   </section>
+  {% endif %}
 
-  <section id="tickets" class="tickets" style="background-image: url(/img/bg-tickets.jpg)">
+  {% if website.apply_title %}
+  <section id="tickets" class="tickets"{% if website.apply_photo %} style="background-image: url({{ website.apply_photo.url }});"{% endif %}>
     <div class="l-container">
       <div class="tickets__text">
-        <h2>Apply for a ticket!</h2>
-        <p>
-          Workshops are aimed for people of any age with basic knowledge of working with a computer. Most of the
-          program is run in Polish, but basic reading skills in English are helpful - some materials are available
-          only in English. We will choose a diverse group of people who are truly motivated and curious about
-          learning. Event is free for everyone, we have a limited space for only 70 participants.<br><br>
-          You'll receive your acceptance letter by 19th June 2014.
-        </p>
-        <!-- <a href="#" class="button tickets__button">Apply</a> -->
+            <h2>{{ website.apply_title }}</h2>
+            <p>{{ website.apply_description|safe }}</p>
+            {% if website.apply_button %}
+                <a href="{{ website.apply_button_url }}" class="button tickets__button">{{ website.apply_button }}</a>
+            {% endif %}
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if website.workshops_title %}
   <section id="workshops" class="workshops">
     <div class="l-container">
-      <h2 class="workshops__headline">Workshops</h2>
-      <p class="workshops__tba">Workshop details will be announced soon.</p>
-      <!--
-      <ul class="workshops__items">
-        <li class="workshops__item">
-          <figure class="workshops__icon-wrapper">
-            <img class="workshops__icon" src="http://placekitten.com/206/217" alt="Workshop's icon">
-          </figure>
-          <div class="workshops__description">
-            <h3>Workshop's name</h3>
-            <p>
-              Elit vel facilis voluptatum nostrum pariatur laborum. Aliquam reiciendis unde doloribus molestias commodi
-              tempore. Nemo ipsa sunt qui nam quia placeat omnis. Numquam repudiandae rem error laudantium reiciendis
-              tempora. Enim?
-            </p>
-          </div>
-        </li>
-      </ul>
-       -->
+      <h2 class="workshops__headline">{{ website.workshops_title }}</h2>
+
+        {% if website.workshop_set.count > 0 %}
+
+            {% for workshop in website.workshop_set.all %}
+
+            <ul class="workshops__items">
+                <li class="workshops__item" id="{{ workshop.name|slugify }}">
+                  <figure class="workshops__icon-wrapper">
+                    {% if workshop.icon %}<img class="workshops__icon" src="{{ workshop.icon.url }}" alt="{{ workshop.name }}'s icon">{% endif %}
+                  </figure>
+                  <div class="workshops__description">
+                    <h3>{{ workshop.name }}</h3>
+                    <p>
+                      {{ workshop.description|safe }}
+                    </p>
+                  </div>
+
+                    <!--
+                    TODO: Workshop leaders
+
+                    {% for leader in workshop.leaders.all %}
+                    <div class="leader">
+                        <div class="photo" style="background-image: url({{ leader.photo.url }})"></div>
+                        <div class="bio">
+                            <p><b>{{ leader.name }}</b></p>
+                            <p>{{ leader.bio }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    -->
+
+                </li>
+              </ul>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="workshops__tba">Workshop details will be announced soon.</p>
+
+        {% endif %}
+
     </div>
   </section>
+  {% endif %}
 
-  <section class="how-it-works" style="background-image: url(/img/bg-how-it-works.jpg)">
+
+  {% if website.howitworks_title %}
+  <section class="how-it-works"{% if website.howitworks_photo %} style="background-image: url({{ website.howitworks_photo.url }});"{% endif %}>
     <div class="l-container">
       <div class="how-it-works__text">
-        <h2>How it works?</h2>
-        <p>
-          Make Things is all about learning, having fun and meeting new people. We care about people: you're in the
-          center of the event and we will make sure you fell in love with the world of hardware. During the whole day
-          we will have a couple of workshop stations that will be working all the time. It means that you can join
-          a workshop anytime you want and stay for as long as you want. If you want to get a little bit of everything,
-          you can do that. If you want to get a deep dive into one topic, you can do that. No fixed schedule,
-          no boredom: just fun, robots and MAKING THINGS.
-        </p>
+        <h2>{{ website.howitworks_title }}</h2>
+        <p>{{ website.howitworks_description|safe }}</p>
       </div>
     </div>
   </section>
+  {% endif %}
 
   <div class="event-details">
     <div class="l-container">
       <section id="agenda" class="agenda">
-        <h2 class="agenda__headline">Agenda</h2>
-        <img src="/img/ico-agenda-tba.png" alt="" class="agenda__tba">
-        <!--
-        <time class="agenda__time">2014-07-26</time>
-        <ol class="agenda__items">
-          <li class="agenda__item agenda__item--featured">
-            <div class="agenda__item-time">9:00</div>
-            <div class="agenda__item-name">START!</div>
-          </li>
-          <li class="agenda__item">
-            <div class="agenda__item-time">9:00</div>
-            <div class="agenda__item-name">Workshop #1</div>
-          </li>
-        </ol>
-         -->
+        <h2 class="agenda__headline">{{ website.agenda_title }}</h2>
+
+          {% if website.agenda_entries.count == 0 %}
+                <img src="{% static 'event/img/ico-agenda-tba.png' %}" alt="" class="agenda__tba">
+          {% else %}
+                <time class="agenda__time">{{ website.date }}</time>
+                <ol class="agenda__items">
+
+                    {% for agenda in website.agenda_entries.all %}
+
+                     <li class="agenda__item agenda__item{% if agenda.is_highlighted %}--featured{% elif agenda.is_break %}--break{% endif %}">
+                        <div class="agenda__item-time">{{ agenda.start_time|date:"G:i" }}{% if agenda.end_time %} - {{ agenda.end_time|date:"G:i" }}{% endif %}</div>
+                        <div class="agenda__item-name">
+                            {% if agenda.workshop %}
+                                <a href="#{{ agenda.workshop.name|slugify }}">Workshop: {{ agenda.workshop.name }}</a>
+                            {% else %}
+                                {{ agenda.title }}
+                            {% endif %}
+                        </div>
+                      </li>
+
+                    {% endfor %}
+
+                </ol>
+          {% endif %}
+
       </section>
 
       <section id="sponsors" class="sponsors">
-        <h2 class="sponsors__headline">Sponsors</h2>
+        <h2 class="sponsors__headline">{{ website.sponsors_title }}</h2>
         <p class="sponsors__text">
-          We're looking for sponsors! Want to help make Make Things in Berlin a success? Contact us: berlin@makethings.io
+          {{ website.sponsors_description }}
         </p>
-        <img class="sponsors__icon" src="/img/ico-heart.png" alt="We <3 sponsors">
+
+            {% if website.sponsor_set.count > 0 %}
+                {% for sponsor in website.sponsor_set.all %}
+                <!--
+
+                TODO: implement sponsors
+
+                <p>
+                    <a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
+                    {% if sponsor.description %}
+                    <br />{{ sponsor.description }}
+                    {% endif %}
+                </p>-->
+                {% endfor %}
+            {% else %}
+                <img class="sponsors__icon" src="{% static 'event/img/ico-heart.png' %}" alt="We <3 sponsors">
+            {% endif %}
+
       </section>
     </div>
   </div>
 
-  <div id="about" class="about" style="background-image: url(/img/bg-about.jpg)">
+  <div id="about" class="about"{% if website.makerland_photo %} style="background-image: url({{ website.makerland_photo.url }});"{% endif %}>
     <div class="l-container">
       <section class="about__box">
         <h2>Makerland</h2>
         <p>
-          Make Things is a part of bigger community of Makers: <a href="#">Makerland</a>, the biggest European Maker Conference. Makerland takes place every year in Warsaw, Poland, where 300 amazing people come to meet, make and have fun. Makerland aims to make it as easy as possible for people to dive into hardware, really understand technology and start Making Things.
+          Make Things is a part of bigger community of Makers: <a href="http://makerland.org/">Makerland</a>, the biggest European Maker Conference. Makerland takes place every year in Warsaw, Poland, where 300 amazing people come to meet, make and have fun. Makerland aims to make it as easy as possible for people to dive into hardware, really understand technology and start Making Things.
         </p>
-        <a href="#" class="button about__button">Check out Makerland</a>
+        <a href="http://makerland.org/" class="button about__button">Check out Makerland</a>
       </section>
 
       <section class="about__box">
@@ -179,49 +249,32 @@
         <p>
           You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends with a global help from Makerland team. Help us spread the joy of making things and bring Make Things event to your city.
         </p>
-        <a href="#" class="button about__button">Go to Make Things</a>
+        <a href="/" class="button about__button">Go to Make Things</a>
       </section>
     </div>
   </div>
 
+  {% if website.faqs.count > 0 %}
   <section id="faq" class="faq">
     <div class="l-container">
       <ul class="faq__items">
-        <li class="faq__item">
-          <h4 class="faq__question">I know how to program Arduino - How can I help?</h4>
-          <p class="faq__answer">We're always looking for workshop leaders and helpers. Let us know: berlin@makethings.io!</p>
-        </li>
-        <li class="faq__item">
-          <h4 class="faq__question">What if I want to join a workshop station that is full?</h4>
-          <p class="faq__answer">Don't worry - just come back a little bit later!</p>
-        </li>
-        <li class="faq__item">
-          <h4 class="faq__question">How do you choose the attendees?</h4>
-          <p class="faq__answer">We're looking for a very diverse group of people who are motivated, curious and want to learn.</p>
-        </li>
-        <li class="faq__item">
-          <h4 class="faq__question">How much it costs?</h4>
-          <p class="faq__answer">It's free! The costs of the hardware and food are covered by our lovely sponsors.</p>
-        </li>
-        <li class="faq__item">
-          <h4 class="faq__question">What should I bring with me for the event?</h4>
-          <p class="faq__answer">Your laptop and lots of creativity, that's all you need!</p>
-        </li>
-        <li class="faq__item">
-          <h4 class="faq__question">Who is this aimed for?</h4>
-          <p class="faq__answer">Make Things events are for everyone (litteraly, everyone is welcome!), although a little programimng basics are very helpful.</p>
-        </li>
+        {% for faq in website.faqs.all %}
+            <li class="faq__item">
+              <h4 class="faq__question">{{ faq.question }}</h4>
+              <p class="faq__answer">{{ faq.answer }}</p>
+            </li>
+        {% endfor %}
       </ul>
     </div>
   </section>
+  {% endif %}
 
-  <section id="contact" class="contact" style="background-image: url(/img/bg-contact.jpg)">
+  <section id="contact" class="contact"{% if website.social_photo %} style="background-image: url({{ website.social_photo.url }});"{% endif %}>
     <div class="l-container">
-      <h2 class="contact__headline">Stay in touch</h2>
-      <form action="#" method="post" class="form">
+      <h2 class="contact__headline">{{ website.newsletter_title }}</h2>
+      <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id={{ website.mailchimp_id }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form validate" target="_blank" novalidate>
         <p class="form__text">
-          If you want to ocasionally receive latest news about Make Things, Makerland or
-          Internet of Things world, subscribe to our newsletter:
+          {{ website.newsletter_description|safe }}
         </p>
         <div class="form__row">
           <div class="form__row-input">
@@ -235,64 +288,53 @@
           <button type="submit" class="form__submit">Subscribe</button>
         </div>
       </form>
-      <h2 class="contact__headline">Follow us on social media:</h2>
+
+      {% if website.facebook_url or website.twitter_handle %}
+      <h2 class="contact__headline">{{ website.social_title }}</h2>
       <div class="contact__social-media">
-        <div class="contact__facebook fb-like-box" data-href="https://www.facebook.com/MakeThingsInBerlin" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-        <a href="https://twitter.com/makethings_ber" class="contact__twitter twitter-follow-button" data-show-count="false" data-size="large">Follow @makethings_ber</a>
+        {% if website.facebook_url %}<div class="contact__facebook fb-like-box" data-href="{{ website.facebook_url }}" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>{% endif %}
+        {% if website.twitter_handle %}<a href="https://twitter.com/{{ website.twitter_handle }}" class="contact__twitter twitter-follow-button" data-show-count="false" data-size="large">Follow @{{ website.twitter_handle }}</a>{% endif %}
       </div>
+      {% endif %}
     </div>
   </section>
 
+
+  {% if website.organizers_title %}
   <section id="organizers" class="organizers">
     <div class="l-container">
-      <h2 class="organizers__headline">Make Things in Berlin is organized by</h2>
+      <h2 class="organizers__headline">{{ website.organizers_title }}</h2>
       <ul class="organizers__items">
-        <li class="organizers__item">
-          <figure class="organizer">
-            <img class="organizer__icon" src="/img/organizer.png" alt="Your Name">
-            <p class="organizer__name">Łukasz Kliś</p>
-            <a href="#" class="organizer__twitter" target="_blank">@lukaszklis</a>
-          </figure>
-        </li>
-        <li class="organizers__item">
-          <figure class="organizer">
-            <img class="organizer__icon" src="/img/organizer.png" alt="Your Name">
-            <p class="organizer__name">Łukasz Kliś</p>
-            <a href="#" class="organizer__twitter" target="_blank">@lukaszklis</a>
-          </figure>
-        </li>
-        <li class="organizers__item">
-          <figure class="organizer">
-            <img class="organizer__icon" src="/img/organizer.png" alt="Your Name">
-            <p class="organizer__name">Łukasz Kliś</p>
-            <a href="#" class="organizer__twitter" target="_blank">@lukaszklis</a>
-          </figure>
-        </li>
-        <li class="organizers__item">
-          <figure class="organizer">
-            <img class="organizer__icon" src="/img/organizer.png" alt="Your Name">
-            <p class="organizer__name">Łukasz Kliś</p>
-            <a href="#" class="organizer__twitter" target="_blank">@lukaszklis</a>
-          </figure>
-        </li>
+
+        {% for organizer in website.team.all %}
+            <li class="organizers__item">
+              <figure class="organizer">
+                {% if organizer.photo %}<img class="organizer__icon" src="{{ organizer.photo.url }}" alt="{{ organizer.get_full_name }}">{% endif %}
+                <p class="organizer__name">{{ organizer.get_full_name }}</p>
+                {% if organizer.twitter %}<a href="http://twitter.com/{{ organizer.twitter }}" class="organizer__twitter" target="_blank">@{{ organizer.twitter }}</a>{% endif %}
+              </figure>
+            </li>
+        {% endfor %}
+
       </ul>
     </div>
   </section>
+  {% endif %}
 
   <div class="footer-wrapper">
     <footer class="footer">
       <div class="l-container">
         <p class="footer__contact">
           Contact us:<br>
-          <a href="#">berlin@makethings.io</a>
+          <a href="mailto:{{ website.event.city|lower }}@makethings.io">{{ website.event.city|lower }}@makethings.io</a>
         </p>
-        <div class="fb-like" data-href="https://www.facebook.com/MakeThingsInBerlin" data-send="false" data-width="330" data-show-faces="true"></div>
+        {% if website.facebook_url %}<div class="fb-like" data-href="{{ website.facebook_url }}" data-send="false" data-width="330" data-show-faces="true"></div>{% endif %}
       </div>
     </footer>
   </div>
 
-  <script src="/js/min/vendors-ck.js" async></script>
-  <script src="/js/min/main-ck.js" async></script>
+  <script src="{% static 'event/js/min/vendors-ck.js' %}" async></script>
+  <script src="{% static 'event/js/min/main-ck.js' %}" async></script>
 
   <div id="fb-root"></div>
   <script>(function(d, s, id) {

@@ -2,6 +2,7 @@
 
 .location {
   @extend %section-background;
+  background-image: image-url('bg-location.jpg');
 }
 
 .location__details {
@@ -9,9 +10,9 @@
   position: relative;
   height: 214px;
   margin: 0 14px 0 11px;
-  padding: 10px 20px 0 10px;
+  padding: 10px 20px 0 20px;
   background: image-url('bg-location.png') repeat-x;
-  font-size: 40px;
+  font-size: 46px;
   line-height: 1.2;
 
   &:before,
@@ -50,6 +51,7 @@
   .location__details {
     float: right;
     max-width: 40%;
+    min-width: 25%;
   }
 }
 
