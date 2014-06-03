@@ -1,0 +1,64 @@
+// --- location ----------------------------------------------------------------
+
+.location {
+  @extend %section-background;
+}
+
+.location__details {
+  @extend %headline;
+  position: relative;
+  height: 214px;
+  margin: 0 14px 0 11px;
+  padding: 10px 20px 0 10px;
+  background: image-url('bg-location.png') repeat-x;
+  font-size: 40px;
+  line-height: 1.2;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+
+  &:before {
+    left: -11px;
+    width: 11px;
+    background-image: image-url('bg-location-before.png');
+  }
+
+  &:after {
+    right: -14px;
+    width: 14px;
+    background-image: image-url('bg-location-after.png');
+  }
+}
+
+.location__details-text {
+  @include vertical-align();
+
+  div {
+    @extend %ellipsis;
+  }
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .location__details {
+    float: right;
+    max-width: 40%;
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .location {
+    height: 300px;
+  }
+
+  .location__details {
+    margin-top: 40px;
+  }
+}

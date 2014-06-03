@@ -1,0 +1,43 @@
+// --- intro: variables --------------------------------------------------------
+
+$intro-logo-width: 399px;
+
+// --- intro -------------------------------------------------------------------
+
+.intro {
+  @extend %section;
+  padding-top: 70px;
+}
+
+.intro__logo {
+  display: block;
+  margin: 0 auto;
+}
+
+.intro__button {
+  @extend %button-full-centered;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .intro__button {
+    @include button-width-auto();
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .intro__logo {
+    float: left;
+    width: $intro-logo-width;
+  }
+
+  .intro__text {
+    @include calc('width', "100% - #{$intro-logo-width} - 60px");
+    float: right;
+
+    h1 {
+      margin-top: 0;
+    }
+  }
+}

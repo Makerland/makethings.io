@@ -1,0 +1,59 @@
+// --- form --------------------------------------------------------------------
+
+.form {
+}
+
+.form__row {
+  @include clearfix();
+  margin-top: 1.4em;
+}
+
+.form__row-input {
+  margin-top: 1.4em;
+}
+
+.form__input {
+  @include box-sizing(border-box);
+  @include border-radius(1px);
+  @include placeholder(rgba($color-white, .8));
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $color-white;
+  background: rgba($color-white, .2);
+  -webkit-appearence: none; // Resets styling on iOS
+}
+
+.form__submit {
+  @extend .button;
+  @extend %button-full-centered;
+  height: 62px;
+  border: 0;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .form__row-input {
+    float: left;
+    width: 200px;
+    margin-right: 10px;
+  }
+
+  .form__row-input--email {
+    width: 300px;
+  }
+
+  .form__submit {
+    @include button-width-auto();
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .form {
+    width: 60%;
+  }
+
+  .form__row-input {
+    margin-top: 0;
+  }
+}

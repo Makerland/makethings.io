@@ -1,0 +1,35 @@
+// --- tickets -----------------------------------------------------------------
+
+.tickets {
+  @extend %section-background;
+  @extend %section-sharpen;
+  color: $color-white;
+}
+
+.tickets__text {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.tickets__button {
+  @extend %button-full-centered;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .tickets__button {
+    width: 200px;
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .tickets__text {
+    width: 60%;
+  }
+
+  .tickets__button {
+    @include button-width-auto();
+  }
+}

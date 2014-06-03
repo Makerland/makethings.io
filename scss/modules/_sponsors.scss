@@ -1,0 +1,34 @@
+// --- sponsors ----------------------------------------------------------------
+
+.sponsors {
+}
+
+.sponsors__headline {}
+
+.sponsors__text {}
+
+.sponsors__icon {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.sponsors__items {}
+
+.sponsors__item {}
+
+.sponsors__link {}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-large) {
+  .sponsors {
+    float: right;
+    width: 35%;
+  }
+
+  .sponsors__headline {
+    margin-top: 0;
+  }
+}

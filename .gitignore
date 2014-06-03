@@ -4,3 +4,6 @@ staticfiles
 *.pyc
 makethings/local_settings.py
 .DS_Store
+.codekit-cache/
+node_modules/
+*.swp

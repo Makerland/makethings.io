@@ -1,0 +1,43 @@
+// --- values ------------------------------------------------------------------
+
+.values {
+  @extend %section;
+}
+
+.values__items {
+  @extend %unstyled;
+}
+
+.values__item {
+  margin-top: 2.8em;
+  text-align: center;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .values__items {
+    @include clearfix();
+    height: 150px;
+    font-size: 18px;
+  }
+
+  .values__item {
+    @include box-sizing(border-box);
+    @include vertical-align();
+    float: left;
+    width: (100%/3);
+    margin-top: 0;
+    padding: 0 10px;
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .values__items {
+    font-size: 20px;
+  }
+}

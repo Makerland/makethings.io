@@ -1,0 +1,26 @@
+// --- fonts: variables --------------------------------------------------------
+
+$font-collection: ('Droid Sans', 'droid-sans', 300, 'normal')
+                  ('Droid Sans', 'droid-sans-bold', 700, 'bold')
+                  ('Bebas Neue', 'bebas-neue', 300, 'normal');
+
+// --- fonts -------------------------------------------------------------------
+
+@each $font in $font-collection {
+  $font-name: nth($font, 1);
+  $font-file-name: nth($font, 2);
+  $font-weight: nth($font, 3);
+  $font-style: nth($font, 4);
+
+  @include font-face(
+    $font-name,
+    font-files(
+      "#{$font-file-name}.woff", woff,
+      "#{$font-file-name}.ttf", truetype,
+      "#{$font-file-name}.svg##{$font-file-name}", svg
+    ),
+    "#{$font-file-name}.eot",
+    $font-weight,
+    $font-style
+  );
+}

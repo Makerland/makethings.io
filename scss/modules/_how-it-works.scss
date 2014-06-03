@@ -1,0 +1,21 @@
+// --- how-it-works ------------------------------------------------------------
+
+.how-it-works {
+  @extend %section-background;
+  @extend %section-sharpen;
+  color: $color-white;
+}
+
+.how-it-works__text {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-large) {
+  .how-it-works__text {
+    width: 60%;
+  }
+}
