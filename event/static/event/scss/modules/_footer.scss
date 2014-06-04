@@ -13,8 +13,22 @@
   background-size: cover;
 }
 
+.footer__facebook {
+  width: 100%;
+  overflow: hidden;
+}
+
 // --- media queries -----------------------------------------------------------
 
+@include min-screen($breakpoint-small) {
+  .footer__facebook {
+    width: auto;
+    overflow: visible;
+  }
+}
+
 @include min-screen($breakpoint-large) {
-  float: right;
+  .footer__facebook {
+    float: right;
+  }
 }
