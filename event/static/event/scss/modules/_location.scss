@@ -5,6 +5,12 @@
   background-image: image-url('bg-location.jpg');
 }
 
+.location__text {
+  @extend %section-sharpen;
+  margin-bottom: 2.8em;
+  color: $color-white;
+}
+
 .location__details {
   @extend %headline;
   position: relative;
@@ -48,6 +54,12 @@
 // --- media queries -----------------------------------------------------------
 
 @include min-screen($breakpoint-small) {
+  .location__text {
+    float: left;
+    width: 45%;
+    margin-bottom: 0;
+  }
+
   .location__details {
     float: right;
     max-width: 40%;
@@ -58,6 +70,11 @@
 @include min-screen($breakpoint-large) {
   .location {
     height: 300px;
+  }
+
+  .location__text {
+    width: 50%;
+    margin-top: 40px;
   }
 
   .location__details {

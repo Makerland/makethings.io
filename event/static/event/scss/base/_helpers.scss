@@ -59,7 +59,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
-  background-attachment: fixed;
+  background-attachment: initial;
+
+  @include min-screen($breakpoint-large + 1px) {
+    background-attachment: fixed;
+  }
 }
 
 %section-sharpen {

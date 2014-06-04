@@ -48,7 +48,7 @@ $agenda-items-gap: 25px;
 
 .agenda__tba {
   display: block;
-  max-width: 400px;
+  max-width: 280px;
   margin: 0 auto;
 }
 
@@ -94,6 +94,12 @@ $agenda-items-gap: 25px;
 }
 
 // --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .agenda__tba {
+    max-width: 400px;
+  }
+}
 
 @include min-screen($breakpoint-large) {
   .agenda {
