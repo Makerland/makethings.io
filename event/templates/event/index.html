@@ -129,10 +129,11 @@
       <h2 class="workshops__headline">{{ website.workshops_title }}</h2>
 
         {% if website.workshop_set.count > 0 %}
-
-            {% for workshop in website.workshop_set.all %}
-
+        
             <ul class="workshops__items">
+
+                {% for workshop in website.workshop_set.all %}
+                
                 <li class="workshops__item" id="{{ workshop.name|slugify }}">
                   <figure class="workshops__icon-wrapper">
                     {% if workshop.icon %}<img class="workshops__icon" src="{{ workshop.icon.url }}" alt="{{ workshop.name }}'s icon">{% endif %}
@@ -159,9 +160,10 @@
                     -->
 
                 </li>
-              </ul>
 
-            {% endfor %}
+              {% endfor %}
+          
+          </ul>
 
         {% else %}
 
