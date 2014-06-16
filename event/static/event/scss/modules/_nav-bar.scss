@@ -73,7 +73,6 @@
 
 @include min-screen($breakpoint-large) {
   .nav-bar {
-    @include calc('width', '100% - 210px');
     display: block;
     float: right;
     background: none;
