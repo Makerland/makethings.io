@@ -66,7 +66,7 @@
           {{ website.about_description|safe }}
         </p>
         {% if website.about_button %}
-          <a href="{{ website.about_button_url }}" class="button intro__button" data-scroll>{{ website.about_button }}</a>
+          <a href="{{ website.about_url }}" class="button intro__button" data-scroll>{{ website.about_button }}</a>
         {% endif %}
       </div>
     </div>
@@ -84,7 +84,7 @@
           <div>{{ website.date }}</div>
           <div>{{ website.location_name }}</div>
           {% if website.location_button %}
-            <a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
+            <a href="{{ website.location_url }}">{{ website.location_button }}</a>
           {% endif %}
         </div>
       </div>
@@ -116,7 +116,7 @@
             <h2>{{ website.apply_title }}</h2>
             <p>{{ website.apply_description|safe }}</p>
             {% if website.apply_button %}
-                <a href="{{ website.apply_button_url }}" class="button tickets__button">{{ website.apply_button }}</a>
+                <a href="{{ website.apply_url }}" class="button tickets__button">{{ website.apply_button }}</a>
             {% endif %}
       </div>
     </div>

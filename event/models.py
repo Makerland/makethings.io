@@ -79,7 +79,7 @@ class Website(models.Model):
     about_title = models.CharField(max_length=255, null=False, blank=False, default="Make Things in ...")
     about_description = models.TextField(null=False, blank=False, default="Welcome to the free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.")
     about_button = models.CharField(max_length=255, null=True, blank=True, default="Apply for a pass", help_text="Leave empty to hide button")
-    about_url = models.URLField(null=True, blank=True)
+    about_url = models.TextField(null=True, blank=True)
 
     #Location & place section
     location_name = models.CharField(max_length=255, null=True, blank=True, default="Location: TBA")
