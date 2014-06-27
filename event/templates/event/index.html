@@ -129,11 +129,11 @@
       <h2 class="workshops__headline">{{ website.workshops_title }}</h2>
 
         {% if website.workshop_set.count > 0 %}
-        
+
             <ul class="workshops__items">
 
                 {% for workshop in website.workshop_set.all %}
-                
+
                 <li class="workshops__item" id="{{ workshop.name|slugify }}">
                   <figure class="workshops__icon-wrapper">
                     {% if workshop.icon %}<img class="workshops__icon" src="{{ workshop.icon.url }}" alt="{{ workshop.name }}'s icon">{% endif %}
@@ -162,7 +162,7 @@
                 </li>
 
               {% endfor %}
-          
+
           </ul>
 
         {% else %}
@@ -224,22 +224,19 @@
           {{ website.sponsors_description }}
         </p>
 
-            {% if website.sponsor_set.count > 0 %}
+        {% if website.sponsor_set.count > 0 %}
+            <ul class="sponsors__items">
                 {% for sponsor in website.sponsor_set.all %}
-                <!--
-
-                TODO: implement sponsors
-
-                <p>
-                    <a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
-                    {% if sponsor.description %}
-                    <br />{{ sponsor.description }}
-                    {% endif %}
-                </p>-->
+                <li class="sponsors__item">
+                    <a href="{{ sponsor.url }}" class="sponsors__link" target="_blank">
+                        <img class="sponsors__logo" src="{{ sponsor.logo.url }}">
+                    </a>
+                </li>
                 {% endfor %}
-            {% else %}
-                <img class="sponsors__icon" src="{% static 'event/img/ico-heart.png' %}" alt="We <3 sponsors">
-            {% endif %}
+            </ul>
+        {% else %}
+            <img class="sponsors__icon" src="{% static 'event/img/ico-heart.png' %}" alt="We <3 sponsors">
+        {% endif %}
 
       </section>
     </div>
