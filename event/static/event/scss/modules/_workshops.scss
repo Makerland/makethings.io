@@ -1,7 +1,6 @@
 // --- workshops ---------------------------------------------------------------
 
 .workshops {
-  @extend %section;
 }
 
 .workshops__headline {
@@ -50,10 +49,6 @@
 // --- media queries -----------------------------------------------------------
 
 @include min-screen($breakpoint-small) {
-  .workshops {
-    background: image-url('bg-workshops.png') repeat-y;
-  }
-
   .workshops__item {
     @include clearfix();
   }

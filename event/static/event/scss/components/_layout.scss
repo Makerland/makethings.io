@@ -9,6 +9,16 @@
   padding-right: 20px;
 }
 
+// --- layout: workshops -------------------------------------------------------
+
+.l-container--workshops {
+  @extend %section;
+
+  @include min-screen($breakpoint-small) {
+    background: image-url('bg-workshops.png') repeat-y;
+  }
+}
+
 .event-details {
   @extend %section;
 }
