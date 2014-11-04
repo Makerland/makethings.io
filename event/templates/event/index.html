@@ -1,129 +1,153 @@
 {% load staticfiles %}
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <meta charset="UTF-8">
+  {% block headers %}
   <title>Make Things in {{ website.event.city }}</title>
   <meta name="description" content="Make Things in {{ website.event.city }} is a free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.">
   <meta name="keywords" content="internet of things, IoT, hardware, maker, maker movement, drones, ar drone, programming, electronics, DIY, arduino, rasbperry pi, 3d printing, 3d modeling, event, free, workshop, make things, makerland">
+  {% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{% static 'event/img/favicon.ico' %}" rel="shortcut icon">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-  <link rel="stylesheet" type="text/css" href="{% static 'event/css/bootstrap.css' %}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{% static 'event/css/style.css' %}" media="screen">
-  <script type="text/javascript" src="{% static 'event/js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'event/js/bootstrap.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'event/js/makethings.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'event/css/main.css' %}" media="screen">
 </head>
-<body>
-  	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	  <div class="container">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		  <a class="navbar-brand" href="/{{ website.url }}">Make Things in {{ website.event.city }}!</a>
-		</div>
-		<div class="navbar-collapse collapse">
-		  <ul class="nav navbar-nav">
-			<li><a href="#about">About</a></li>
-			{% if website.apply_title %}<li><a href="#apply"><b>Get a ticket!</b></a></li>{% endif %}
-			{% if website.workshop_set.count > 0 and website.workshops_title %}<li><a href="#workshops">Workshops</a></li>{% endif %}
-			{% if website.agenda_entries.count > 0 %}<li><a href="#agenda">Agenda</a></li>{% endif %}
-			{% if website.sponsor_set.count > 0 or website.sponsors_title %}<li><a href="#sponsors">Sponsors</a></li>{% endif %}
-			{% if website.faqs.count > 0 %}<li><a href="#faq">FAQ</a></li>{% endif %}
-			<li class="pull-right"><a href="/" style="text-decoration: underline;">Make Things in your city?</a></li>
-		  </ul>
-		</div><!--/.nav-collapse -->
-	  </div>
-	</div>
+<body class="no-js">
 
+{% block navigation %}
+  <header class="header">
+    <div class="l-container">
+      <a href="/{{ website.url }}" class="header__link">Make Things in {{ website.event.city }}!</a>
+      <a href="#" id="toggle-nav" class="header__nav-link">&#x2261;</a>
+      <nav id="nav" class="nav-bar">
+        <ul class="nav-bar__items">
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#intro">About</a>
+          </li>
+          {% if website.apply_title %}
+          <li class="nav-bar__item nav-bar__item--featured">
+            <a class="nav-bar__link" data-scroll href="#tickets">Get a ticket!</a>
+          </li>
+          {% endif %}
+          {% if website.workshop_set.count > 0 and website.workshops_title %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#workshops">Workshops</a>
+          </li>
+          {% endif %}
+          {% if website.agenda_entries.count > 0 %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#agenda">Agenda</a>
+          </li>
+          {% endif %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#sponsors">Sponsors</a>
+          </li>
+          {% if website.faqs.count > 0 %}
+          <li class="nav-bar__item">
+            <a class="nav-bar__link" data-scroll href="#faq">FAQ</a>
+          </li>
+          {% endif %}
+          <li class="nav-bar__item nav-bar__item--push">
+            <a class="nav-bar__link" href="/">Make Things in your city?</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+{% endblock %}
 
-	<!-- About -->
-	<div class="container">
-	  	<div id="about" class="row">
-	  		<div class="col-md-5 logo"><img src="{% static 'event/img/logo.png' %}" /></div>
-	  		<div class="col-md-7 about">
-		  		<h1>{{ website.about_title }}</h1>
-		  		<p>{{ website.about_description|safe }}</p>
-		  		{% if website.about_button %}
-					<p class="buttons"><a class="button" href="{{ website.about_button_url }}">{{ website.about_button }}</a></p>
-				{% endif %}
-		  	</div>
-	  	</div>
-	</div>
+{% block content %}
+  <section id="intro" class="intro">
+    <div class="l-container">
+      <img src="{% static 'event/img/logo.png' %}" class="intro__logo" alt="Make Things's logo">
+      <div class="intro__text">
+        <h1>{{ website.about_title }}</h1>
+        <p>
+          {{ website.about_description|safe }}
+        </p>
+        {% if website.about_button %}
+          <a href="{{ website.about_url }}" class="button intro__button" data-scroll>{{ website.about_button }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-	<!-- Date & place -->
-	<div id="dateplace">
-	  	<div class="container">
-	  		<div class="box">
-	  			<h2>{{ website.date|date:"d M, Y" }}</h2>
-	  			<h2>{{ website.location_name }}</h2>
-	  			{% if website.location_button %}
-					<a href="{{ website.location_button_url }}">{{ website.location_button }}</a>
-				{% endif %}
-	  		</div>
-	  	</div>
-	</div>
+  <section id="location" class="location"{% if website.location_photo %} style="background-image: url({{ website.location_photo.url }});"{% endif %}>
+    <div class="l-container">
+      {% if website.location_description %}
+        <div class="location__text">
+          {{ website.location_description|safe }}
+        </div>
+      {% endif %}
+      <div class="location__details">
+        <div class="location__details-text">
+          <div>{{ website.date }}</div>
+          <div>{{ website.location_name }}</div>
+          {% if website.location_button %}
+            <a href="{{ website.location_url }}">{{ website.location_button }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
 
-	{% if website.value_1 and website.value_2 and website.value_3 %}
-	<!-- Value proposition -->
-	<div class="container">
-	  	<div id="value" class="row">
-	  		<div class="col-md-4">
-	  			{{ website.value_1|safe }}
-	  		</div>
-	  		<div class="col-md-4">
-	  			{{ website.value_2|safe }}
-	  		</div>
-	  		<div class="col-md-4">
-	  			{{ website.value_3|safe }}
-	  		</div>
-	  	</div>
-	</div>
-	{% endif %}
+  {% if website.value_1 or website.value_2 or website.value_3 %}
+  <section class="values">
+    <div class="l-container">
+      <ul class="values__items">
+        <li class="values__item">
+          {{ website.value_1|safe }}
+        </li>
+        <li class="values__item">
+          {{ website.value_2|safe }}
+        </li>
+        <li class="values__item">
+          {{ website.value_3|safe }}
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endif %}
 
-	{% if website.apply_title %}
-	<!-- Apply for ticket -->
-	<div id="apply">
-		<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<h2>{{ website.apply_title }}</h2>
-						<p>{{ website.apply_description|safe }}</p>
-						{% if website.apply_button %}
-							<p class="buttons"><a class="button" href="{{ website.apply_button_url }}">{{ website.apply_button }}</a></p>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
+  {% if website.apply_title %}
+  <section id="tickets" class="tickets"{% if website.apply_photo %} style="background-image: url({{ website.apply_photo.url }});"{% endif %}>
+    <div class="l-container">
+      <div class="tickets__text">
+            <h2>{{ website.apply_title }}</h2>
+            <p>{{ website.apply_description|safe }}</p>
+            {% if website.apply_button %}
+                <a href="{{ website.apply_url }}" class="button tickets__button">{{ website.apply_button }}</a>
+            {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
 
-	{% if website.workshops_title and website.workshop_set.count > 0 %}
-	<!-- Workshops -->
-	<div class="container">
-		<div id="workshops">
-			<div style="text-align: center; margin-bottom: 40px;"><h2>{{ website.workshops_title }}</h2></div>
+  {% if website.workshops_title %}
+  <section id="workshops" class="workshops">
+    <div class="l-container l-container--workshops">
+      <h2 class="workshops__headline">{{ website.workshops_title }}</h2>
 
-            {% for workshop in website.workshop_set.all %}
-			<div class="row" id="{{ workshop.name|slugify }}">
-				<div class="col-md-4">
-					<div class="icon box-1">
-						{% if workshop.icon %}<img src="{{ workshop.icon.url }}" />{% endif %}
-					</div>
-				</div>
-				<div class="col-md-4 description">
-					<h4>{{ workshop.name }}</h4>
-					<p>{{ workshop.description|safe }}</p>
-				</div>
-				<div class="col-md-4">
+        {% if website.workshop_set.count > 0 %}
+
+            <ul class="workshops__items">
+
+                {% for workshop in website.workshop_set.all %}
+
+                <li class="workshops__item" id="{{ workshop.name|slugify }}">
+                  <figure class="workshops__icon-wrapper">
+                    {% if workshop.icon %}<img class="workshops__icon" src="{{ workshop.icon.url }}" alt="{{ workshop.name }}'s icon">{% endif %}
+                  </figure>
+                  <div class="workshops__description">
+                    <h3>{{ workshop.name }}</h3>
+                    <p>
+                      {{ workshop.description|safe }}
+                    </p>
+                  </div>
+
+                    <!--
+                    TODO: Workshop leaders
+
                     {% for leader in workshop.leaders.all %}
                     <div class="leader">
                         <div class="photo" style="background-image: url({{ leader.photo.url }})"></div>
@@ -133,207 +157,216 @@
                         </div>
                     </div>
                     {% endfor %}
-				</div>
-			</div>
-            {% endfor %}
-		</div>
-	</div>
-	{% endif %}
+                    -->
 
-	{% if website.howitworks_title %}
-	<!-- Async -->
-	<div id="async">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<h2>{{ website.howitworks_title }}</h2>
-						<p>{{ website.howitworks_description|safe }}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
+                </li>
 
-    {% if website.agenda_entries.count > 0 or website.sponsor_set.count > 0 %}
-	<!-- Agenda / Sponsors -->
-	<div class="container">
-		<div class="row" style="padding: 30px 0">
+              {% endfor %}
 
-			<div class="col-md-8" id="agenda">
-				<h2>{{ website.agenda_title }}</h2>
+          </ul>
 
-				<div class="day" id="first">
-                    {% if website.agenda_entries.count == 0 %}
-                        Agenda will be announced soon.
-                    {% else %}
-                        <div class="head">{{ website.date|date:"D, d M Y" }}</div>
-                        <ul class="schedule">
-                            {% for agenda in website.agenda_entries.all %}
-                            <li class="{% if agenda.is_highlighted %}highlighted{% elif agenda.is_break %}coffeebreak{% endif %}{% if agenda.workshop %} workshop{% endif %}">
-                                <span>{{ agenda.start_time|date:"G:i" }}{% if agenda.end_time %} - {{ agenda.end_time|date:"G:i" }}{% endif %}</span>
-                                <span>
-                                    {% if agenda.workshop %}
-                                        <a href="#{{ agenda.workshop.name|slugify }}">Workshop: {{ agenda.workshop.name }}</a>
-                                    {% else %}
-                                        {{ agenda.title }}
-                                    {% endif %}
-                                </span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-				</div>
-			</div>
+        {% else %}
 
-            {% if website.sponsor_set.count > 0 %}
-			<div class="col-md-4" id="sponsors">
-				<h2>{{ website.sponsors_title }}</h2>
-				{{ website.sponsors_description }}
+            <p class="workshops__tba">Workshop details will be announced soon.</p>
 
+        {% endif %}
+
+    </div>
+  </section>
+  {% endif %}
+
+
+  {% if website.howitworks_title %}
+  <section class="how-it-works"{% if website.howitworks_photo %} style="background-image: url({{ website.howitworks_photo.url }});"{% endif %}>
+    <div class="l-container">
+      <div class="how-it-works__text">
+        <h2>{{ website.howitworks_title }}</h2>
+        <p>{{ website.howitworks_description|safe }}</p>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="event-details">
+    <div class="l-container">
+      <section id="agenda" class="agenda">
+        <h2 class="agenda__headline">{{ website.agenda_title }}</h2>
+
+          {% if website.agenda_entries.count == 0 %}
+                <img src="{% static 'event/img/ico-agenda-tba.png' %}" alt="" class="agenda__tba">
+          {% else %}
+                <time class="agenda__time">{{ website.date }}</time>
+                <ol class="agenda__items">
+
+                    {% for agenda in website.agenda_entries.all %}
+
+                     <li class="agenda__item agenda__item{% if agenda.is_highlighted %}--featured{% elif agenda.is_break %}--break{% endif %}">
+                        <div class="agenda__item-time">{{ agenda.start_time|date:"G:i" }}{% if agenda.end_time %} - {{ agenda.end_time|date:"G:i" }}{% endif %}</div>
+                        <div class="agenda__item-name">
+                            {% if agenda.workshop %}
+                                <a href="#{{ agenda.workshop.name|slugify }}">Workshop: {{ agenda.workshop.name }}</a>
+                            {% else %}
+                                {{ agenda.title }}
+                            {% endif %}
+                        </div>
+                      </li>
+
+                    {% endfor %}
+
+                </ol>
+          {% endif %}
+
+      </section>
+
+      <section id="sponsors" class="sponsors">
+        <h2 class="sponsors__headline">{{ website.sponsors_title }}</h2>
+        <p class="sponsors__text">
+          {{ website.sponsors_description }}
+        </p>
+
+        {% if website.sponsor_set.count > 0 %}
+            <ul class="sponsors__items">
                 {% for sponsor in website.sponsor_set.all %}
-				<p>
-					<a href="{{ sponsor.url }}" target="_blank"><img src="{{ sponsor.logo.url }}"></a>
-                    {% if sponsor.description %}
-                    <br />{{ sponsor.description }}
-                    {% endif %}
-				</p>
+                <li class="sponsors__item">
+                    <a href="{{ sponsor.url }}" class="sponsors__link" target="_blank">
+                        <img class="sponsors__logo" src="{{ sponsor.logo.url }}">
+                    </a>
+                </li>
                 {% endfor %}
-			</div>
-            {% endif %}
+            </ul>
+        {% else %}
+            <img class="sponsors__icon" src="{% static 'event/img/ico-heart.png' %}" alt="We <3 sponsors">
+        {% endif %}
 
-		</div>
-        <div class="cls"></div>
+      </section>
+    </div>
+  </div>
 
-	</div>
-    {% endif %}
+  <div id="about" class="about"{% if website.makerland_photo %} style="background-image: url({{ website.makerland_photo.url }});"{% endif %}>
+    <div class="l-container">
+      <section class="about__box">
+        <h2>Makerland</h2>
+        <p>
+          Make Things is a part of bigger community of Makers: <a href="http://makerland.org/">Makerland</a>, the biggest European Maker Conference. Makerland takes place every year in Warsaw, Poland, where 300 amazing people come to meet, make and have fun. Makerland aims to make it as easy as possible for people to dive into hardware, really understand technology and start Making Things.
+        </p>
+        <a href="http://makerland.org/" class="button about__button">Check out Makerland</a>
+      </section>
 
-	<!-- Makerland -->
-	<div id="makerland">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<h2>Makerland</h2>
-						<p>Make Things is a part of bigger community of Makers: <a href="http://makerland.org/" target="_blank">Makerland</a>. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.  </p>
-						<p style="margin-top: 30px"><a href="http://makerland.org/" target="_blank" class="button">Check out Makerland</a></p>
-					</div>
-					<div class="col-md-6">
-						<h2>Make Things in your city?</h2>
-						<p>You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends with a global help from Makerland team. Help us spread the joy of making things and bring Make Things event to your city:  </p>
-						<p style="margin-top: 30px"><a href="http://makethings.io/" target="_blank" class="button">Go to Make Things</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+      <section class="about__box">
+        <h2>Make Things in your city?</h2>
+        <p>
+          You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends. Each team receives lots of help from a Makerland team and organizers from the rest of the cities, so you're not alone in this :) Help us spread the joy of making things and bring Make Things event to your city.
+        </p>
+        <a href="/" class="button about__button">Go to Make Things</a>
+      </section>
+    </div>
+  </div>
 
-    {% if website.faqs.count > 0 %}
-	<!-- FAQ -->
-	<div class="container">
-		<div id="faq">
-            <div class="row">
-            {% for faq in website.faqs.all %}
-				<div class="col-md-4">
-					<p><b>{{ faq.question }}</b></p>
-					<p>{{ faq.answer }}</p>
-				</div>
-                {% if forloop.counter|divisibleby:"3" %}</div><div class="row">{% endif %}
-            {% endfor %}
-			</div>
-		</div>
-	</div>
-    {% endif %}
+  {% if website.faqs.count > 0 %}
+  <section id="faq" class="faq">
+    <div class="l-container">
+      <ul class="faq__items">
+        {% for faq in website.faqs.all %}
+          <li class="faq__item">
+            <h4 class="faq__question">{{ faq.question }}</h4>
+            <p class="faq__answer">{{ faq.answer }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
 
-	<!-- Social / Newsletter -->
-	<div id="social">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<h2>{{ website.newsletter_title }}</h2>
-						<p>{{ website.newsletter_description|safe }}</p>
-                        <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id={{ website.mailchimp_id }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-						<p><input type="text" name="NAME" class="required" placeholder="Your name" /> <input type="email" name="EMAIL" class="required email" placeholder="Your e-mail" /></p>
-						<p style="margin-top: 30px"><button class="button">Subscribe</button></p>
-                         </form>
-                        {% if website.facebook_url %}
-						    <h2 style="margin-top: 70px">{{ website.social_title }}</h2>
-						    <div class="fb-like-box" data-href="{{ website.facebook_url }}" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-                        {% endif %}
-					</div>
+  <section id="contact" class="contact"{% if website.social_photo %} style="background-image: url({{ website.social_photo.url }});"{% endif %}>
+    <div class="l-container">
+      <h2 class="contact__headline">{{ website.newsletter_title }}</h2>
+      <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id={{ website.mailchimp_id }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form validate" target="_blank" novalidate>
+        <p class="form__text">
+          {{ website.newsletter_description|safe }}
+        </p>
+        <div class="form__row">
+          <div class="form__row-input">
+            <input type="text" class="form__input" placeholder="Your name">
+          </div>
+          <div class="form__row-input form__row-input--email">
+            <input type="email" class="form__input" placeholder="Your e-mail">
+          </div>
+        </div>
+        <div class="form__row">
+          <button type="submit" class="form__submit">Subscribe</button>
+        </div>
+      </form>
 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	{% if website.organizers_title %}
-	<!-- Team -->
-	<div class="container">
-		<div id="team">
-			<h2>{{ website.organizers_title }}</h2>
-			<div class="row">
-				{% for organizer in website.team.all %}
-
-					<div class="col-md-3">
-						{% if organizer.photo %}<p class="photo"><div class="circle" style="background: url('{{ organizer.photo.url }}') center no-repeat; background-size: 160px auto"></div></p>{% endif %}
-						<p><b>{{ organizer.get_full_name }}</b></p>
-						{% if organizer.twitter %}<p><a href="http://twitter.com/{{ organizer.twitter }}" target="_blank">@{{ organizer.twitter }}</a></p>{% endif %}
-					</div>
-
-					{% if forloop.counter == 2 %}</div><div class="row">{% endif %}
-				{% endfor %}
-				
-			</div>
-
-		</div>
-	</div>
-	{% endif %}
-
-	<footer>
-		<div class="wires">
-			<div class="container">
-				<div class="left">
-					Contact us: <br /> <a href="mailto:{{ website.event.city|lower }}@makethings.io">{{ website.event.city|lower }}@makethings.io</a><br /><br />
-
-					{% if website.facebook_url %}<div class="fb-like" data-href="{{ website.facebook_url }}" data-send="false" data-width="330" data-show-faces="true"></div>{% endif %}
-				</div>
-			</div>
-		</div>
-	</footer>
+      {% if website.facebook_url or website.twitter_handle %}
+      <h2 class="contact__headline">{{ website.social_title }}</h2>
+      <div class="contact__social-media">
+        {% if website.facebook_url %}<div class="contact__facebook fb-like-box" data-href="{{ website.facebook_url }}" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>{% endif %}
+        {% if website.twitter_handle %}<a href="https://twitter.com/{{ website.twitter_handle }}" class="contact__twitter twitter-follow-button" data-show-count="false" data-size="large">Follow @{{ website.twitter_handle }}</a>{% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
 
 
-	<!-- fb -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=345022845576638";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-	<!-- twitter -->
-	    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-	<!-- g+ -->
-        <script type="text/javascript">
-            (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/platform.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-        </script>
-    <!-- analytics -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  {% if website.organizers_title %}
+  <section id="organizers" class="organizers">
+    <div class="l-container">
+      <h2 class="organizers__headline">{{ website.organizers_title }}</h2>
+      <ul class="organizers__items">
 
-          ga('create', 'UA-40028264-5', 'makethings.io');
-          ga('send', 'pageview');
-        </script>
+        {% for organizer in website.team.all %}
+          <li class="organizers__item">
+            <figure class="organizer">
+              {% if organizer.photo %}<img class="organizer__icon" src="{{ organizer.photo.url }}" alt="{{ organizer.get_full_name }}">{% endif %}
+              <p class="organizer__name">{{ organizer.get_full_name }}</p>
+              {% if organizer.twitter %}<a href="http://twitter.com/{{ organizer.twitter }}" class="organizer__twitter" target="_blank">@{{ organizer.twitter }}</a>{% endif %}
+            </figure>
+          </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+  <div class="footer-wrapper">
+    <footer class="footer">
+      <div class="l-container">
+        <p class="footer__contact">
+          Contact us:<br>
+          <a href="mailto:{{ website.event.city|lower }}@makethings.io">{{ website.event.city|lower }}@makethings.io</a>
+        </p>
+        {% if website.facebook_url %}<div class="footer__facebook fb-like" data-href="{{ website.facebook_url }}" data-send="false" data-width="330" data-show-faces="true"></div>{% endif %}
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+  <script src="{% static 'event/js/min/vendors-ck.js' %}"></script>
+  <script src="{% static 'event/js/min/main-ck.js' %}"></script>
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=345022845576638";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-40028264-5', 'makethings.io');
+    ga('send', 'pageview');
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,34 @@
+{% extends 'core/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% include 'core/includes/intro.html' %}
+
+<section class="events">
+    <div class="l-container">
+      <div id="wufoo-r1215nlo1jn1zaa">
+        Fill out my <a href="https://makerland.wufoo.com/forms/r1215nlo1jn1zaa">online form</a>.
+      </div>
+
+    </div>
+</section>
+
+<script type="text/javascript">var r1215nlo1jn1zaa;(function(d, t) {
+    var s = d.createElement(t), options = {
+    'userName':'makerland',
+    'formHash':'r1215nlo1jn1zaa',
+    'autoResize':true,
+    'height':'1220',
+    'async':true,
+    'host':'wufoo.com',
+    'header':'show',
+    'ssl':true};
+    s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+    s.onload = s.onreadystatechange = function() {
+    var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+    try { r1215nlo1jn1zaa = new WufooForm();r1215nlo1jn1zaa.initialize(options);r1215nlo1jn1zaa.display(); } catch (e) {}};
+    var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+    })(document, 'script');
+</script>
+{% endblock %}

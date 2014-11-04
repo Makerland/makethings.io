@@ -1,5 +1,6 @@
 collectedstatic
+staticfiles
 .idea
 *.pyc
 makethings/local_settings.py
-.DS_Store
+.sass-cache

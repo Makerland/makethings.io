@@ -1,0 +1,23 @@
+// --- tickets -----------------------------------------------------------------
+
+.goal {
+  @extend %section-background;
+  @extend %section-sharpen;
+  color: $color-white;
+  background-image: image-url('bg-location.jpg');
+}
+
+.goal__text {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+
+// --- media queries -----------------------------------------------------------
+@include min-screen($breakpoint-large) {
+  .goal__text {
+    width: 50%;
+    float: right;
+  }
+}

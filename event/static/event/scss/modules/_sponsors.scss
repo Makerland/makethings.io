@@ -1,0 +1,61 @@
+// --- sponsors ----------------------------------------------------------------
+
+.sponsors {
+}
+
+.sponsors__headline {}
+
+.sponsors__text {}
+
+.sponsors__icon {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.sponsors__items {
+  @extend %unstyled;
+}
+
+.sponsors__link {
+  display: block;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.sponsors__logo {
+  max-width: 180px;
+  max-height: 40px;
+  vertical-align: middle;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .sponsors__items {
+    @include clearfix();
+  }
+
+  .sponsors__item {
+    float: left;
+    width: 50%;
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .sponsors {
+    float: right;
+    width: 35%;
+  }
+
+  .sponsors__headline {
+    margin-top: 0;
+  }
+
+  .sponsors__logo {
+    max-width: 160px;
+  }
+}

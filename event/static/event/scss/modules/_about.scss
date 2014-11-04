@@ -1,0 +1,39 @@
+// --- about -------------------------------------------------------------------
+
+.about {
+  @extend %section-background;
+  @extend %section-sharpen;
+  color: $color-white;
+  background-image: image-url('bg-about.jpg');
+}
+
+.about__box {
+  margin-top: 5.6em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.about__button {
+  @extend %button-full-centered;
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .about__box {
+    float: left;
+    width: 48%;
+    margin-top: 0;
+    margin-left: 4%;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

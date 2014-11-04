@@ -1,0 +1,69 @@
+// --- workshops ---------------------------------------------------------------
+
+.workshops {
+}
+
+.workshops__headline {
+  margin-top: 0;
+  text-align: center;
+}
+
+.workshops__tba {
+  text-align: center;
+}
+
+.workshops__items {
+  @extend %unstyled;
+}
+
+.workshops__item {
+  margin-top: 5.6em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.workshops__icon-wrapper {
+  width: 206px;
+  height: 217px;
+  margin: 0 auto;
+  padding: 11px 14px 2px 2px;
+  background: image-url('bg-workshops-icon-wrapper.png') 50% no-repeat;
+}
+
+.workshops__icon {
+}
+
+.workshops__description {
+  h3 {
+    font-size: 30px;
+    color: $color-blue;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .workshops__item {
+    @include clearfix();
+  }
+
+  .workshops__icon-wrapper {
+    float: left;
+  }
+
+  .workshops__description {
+    @include calc('width', '100% - 272px');
+    float: right;
+
+    h3 {
+      margin: 0;
+      font-weight: normal;
+    }
+  }
+}

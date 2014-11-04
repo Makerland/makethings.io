@@ -41,6 +41,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     class Meta:
         verbose_name = 'Organizer'
         verbose_name_plural = 'Organizers'
+        ordering = ('id', )
 
     def __unicode__(self):
         return u'{0} ({1})'.format(self.get_full_name(), self.email)
@@ -70,7 +71,7 @@ class Website(models.Model):
 
     event = models.ForeignKey(Event, null=False, blank=False)
     url = models.CharField(max_length=100, null=False, blank=False)
-    date = models.DateField(null=True, blank=True)
+    date = models.CharField(max_length=100, null=True, blank=True)
     team = models.ManyToManyField(User, null=True, blank=True, related_name="websites")
     status = models.IntegerField(null=False, blank=False, default=0, choices=STATUSES)
 
@@ -78,12 +79,14 @@ class Website(models.Model):
     about_title = models.CharField(max_length=255, null=False, blank=False, default="Make Things in ...")
     about_description = models.TextField(null=False, blank=False, default="Welcome to the free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.")
     about_button = models.CharField(max_length=255, null=True, blank=True, default="Apply for a pass", help_text="Leave empty to hide button")
-    about_url = models.URLField(null=True, blank=True)
+    about_url = models.TextField(null=True, blank=True)
 
     #Location & place section
     location_name = models.CharField(max_length=255, null=True, blank=True, default="Location: TBA")
     location_button = models.CharField(max_length=255, null=True, blank=True, default="Get directions »", help_text="Leave empty to hide button")
     location_url = models.URLField(null=True, blank=True, help_text="Google maps link")
+    location_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of Date/Location section")
+    location_description = models.TextField(null=True, blank=True, default="")
 
     #Values section
     value_1 = models.CharField(max_length=255, null=True, blank=True, default="<b>Make Things</b> aims to give everyone a chance to start their journey with hardware.", help_text="Leave empty to hide section. HTML allowed.")
@@ -95,6 +98,7 @@ class Website(models.Model):
     apply_description = models.TextField(null=True, blank=True, help_text="HTML allowed", default="Workshops are aimed for people of any age with basic knowledge of working with a computer. Most of the program is run in Polish, but basic reading skills in English are helpful - some materials are available only in English. We will choose a diverse group of people who are truly motivated and curious about learning. Event is free for everyone, we have a limited space for only 70 participants.<br /><br />You'll receive your acceptance letter by 19th June 2014.")
     apply_button = models.CharField(max_length=255, null=True, blank=True, default="Apply", help_text="Leave empty to hide button")
     apply_url = models.URLField(null=True, blank=True)
+    apply_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of Apply section")
 
     #Workshop section
     workshops_title = models.CharField(max_length=255, null=True, blank=True, default="Workshops", help_text="Leave empty to hide whole 'Workshop' section.")
@@ -102,22 +106,28 @@ class Website(models.Model):
     #How it works
     howitworks_title = models.CharField(max_length=255, null=True, blank=True, default="How it works?", help_text="Leave empty to hide whole 'How it works' section.")
     howitworks_description = models.TextField(null=True, blank=True, help_text="HTML allowed", default="Make Things is all about learning, having fun and meeting new people. We care about people: you're in the center of the event and we will make sure you fell in love with the world of hardware. During the whole day we will have a couple of workshop stations that will be working all the time. It means that you can join a workshop anytime you want and stay for as long as you want. If you want to get a little bit of everything, you can do that. If you want to get a deep dive into one topic, you can do that. No fixed schedule, no boredom: just fun, robots and MAKING THINGS.")
+    howitworks_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of How it works section")
 
     #Agenda / Sponsors section
     agenda_title = models.CharField(max_length=255, null=False, blank=False, default="Agenda")
     sponsors_title = models.CharField(max_length=255, null=False, blank=False, default="Sponsors")
-    sponsors_description = models.CharField(max_length=255, null=True, blank=True, default="We couldn't be here without the amazing support of our sponsors:")
+    sponsors_description = models.CharField(max_length=255, null=True, blank=True, default="We're looking for sponsors! Want to help make MAKE THINGS in ... a success? Contact us: ...@makethings.io")
 
     #Social section
     newsletter_title = models.CharField(max_length=255, null=False, blank=False, default="Stay in touch:")
     newsletter_description = models.TextField(null=True, blank=True, default="If you want to ocasionally receive latest news about Make Things, Makerland or Internet of Things world, subscribe to our newsletter:")
     social_title = models.CharField(max_length=255, null=False, blank=False, default="Follow us on social media:")
+    social_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of Social/Newsletter section")
 
     #Organizers section
     organizers_title = models.CharField(max_length=255, null=True, blank=True, default="Make Things in ... is organized by", help_text="Leave empty to hide whole 'Organizers' section.")
 
+    #Makerland section
+    makerland_photo = models.ImageField(upload_to="event/photos/", null=True, blank=True, default=None, help_text="Photo in the background of Makerland section")
+
     mailchimp_id = models.CharField(max_length=100, null=True, blank=True)
     facebook_url = models.URLField(null=True, blank=True)
+    twitter_handle = models.CharField(max_length=200, null=True, blank=True, default='')
 
     def __unicode__(self):
         return self.name()

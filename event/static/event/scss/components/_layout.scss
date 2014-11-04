@@ -1,0 +1,24 @@
+// --- layout ------------------------------------------------------------------
+
+.l-container {
+  @include clearfix();
+  min-width: 280px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+// --- layout: workshops -------------------------------------------------------
+
+.l-container--workshops {
+  @extend %section;
+
+  @include min-screen($breakpoint-small) {
+    background: image-url('bg-workshops.png') repeat-y;
+  }
+}
+
+.event-details {
+  @extend %section;
+}

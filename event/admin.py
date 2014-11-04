@@ -66,7 +66,7 @@ class WebsiteAdmin(admin.ModelAdmin):
 		}),
 		('Social', {
 			'classes': ('suit-tab suit-tab-general',),
-			'fields': ['mailchimp_id', 'facebook_url']
+			'fields': ['mailchimp_id', 'facebook_url', 'twitter_handle']
 		}),
 		('About section', {
 			'classes': ('suit-tab suit-tab-content',),
@@ -74,7 +74,7 @@ class WebsiteAdmin(admin.ModelAdmin):
 		}),
 	    ('Location section', {
 			'classes': ('suit-tab suit-tab-content',),
-		    'fields': ['location_name', 'location_button', 'location_url']
+		    'fields': ['location_name', 'location_description', 'location_button', 'location_url']
 		}),
 	    ('Values section', {
 			'classes': ('suit-tab suit-tab-content',),
@@ -107,10 +107,13 @@ class WebsiteAdmin(admin.ModelAdmin):
 		('Organizers section', {
 			'classes': ('suit-tab suit-tab-content',),
 		    'fields': ['organizers_title']
-		})
-
+		}),
+        ('Background photos', {
+			'classes': ('suit-tab suit-tab-photos',),
+			'fields': ['location_photo', 'apply_photo', 'howitworks_photo', 'makerland_photo', 'social_photo']
+		}),
 	]
-	suit_form_tabs = (('general', 'General settings'), ('content', 'Content on website'))
+	suit_form_tabs = (('general', 'General settings'), ('content', 'Content on website'), ('photos', 'Background photos'), )
 
 	def get_form(self, request, obj=None, **kwargs):
 		form = super(WebsiteAdmin, self).get_form(request, obj, **kwargs)

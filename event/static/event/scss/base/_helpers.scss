@@ -1,0 +1,90 @@
+// --- helpers -----------------------------------------------------------------
+
+@mixin clearfix () {
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin calc ($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin placeholder ($color) {
+  &:-moz-placeholder {
+    color: $color;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin vertical-align () {
+  @include translateY(-50%);
+  position: relative;
+  top: 50%;
+}
+
+%unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+%section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: $color-white;
+}
+
+%section-background {
+  @extend %section;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-attachment: initial;
+
+  @include min-screen($breakpoint-large + 1px) {
+    background-attachment: fixed;
+  }
+}
+
+%section-sharpen {
+  text-shadow: 0 1px 1px rgba($color-black, .75);
+}
+
+%headline {
+  font-family: $font-bebas;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+%ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%button-full-centered {
+  @include calc('width', '100% - 30px');
+  display: block !important;
+  margin: 0 auto;
+}

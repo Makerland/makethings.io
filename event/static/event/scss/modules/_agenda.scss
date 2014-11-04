@@ -1,0 +1,113 @@
+// --- agenda: variables -------------------------------------------------------
+
+$agenda-time-before-width: 46px;
+$agenda-time-after-width: 48px;
+$agenda-items-gap: 25px;
+
+// --- agenda ------------------------------------------------------------------
+
+.agenda {
+}
+
+.agenda__headline {
+  margin-top: 0;
+}
+
+.agenda__time {
+  @extend %headline;
+  position: relative;
+  display: block;
+  margin-left: $agenda-time-before-width;
+  margin-right: $agenda-time-after-width;
+  padding: 25px 0 2px 4px;
+  background: image-url('bg-agenda-time.png') repeat-x;
+  font-size: 30px;
+  line-height: 38px;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+
+  &:before {
+    left: -($agenda-time-before-width);
+    width: $agenda-time-before-width;
+    background-image: image-url('bg-agenda-time-before.png');
+  }
+
+  &:after {
+    right: -($agenda-time-after-width);
+    width: $agenda-time-after-width;
+    background-image: image-url('bg-agenda-time-after.png');
+  }
+}
+
+.agenda__tba {
+  display: block;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.agenda__items {
+  @extend %unstyled;
+  margin-top: -($agenda-items-gap);
+  margin-left: $agenda-items-gap*2;
+  padding-top: 35px;
+  border: 2px solid $color-black;
+  border-top: 0;
+}
+
+.agenda__item {
+  @include clearfix();
+  padding: 10px 20px;
+  border-top: 2px solid $color-black;
+
+  &:first-child {
+    border-top: 0;
+  }
+}
+
+.agenda__item--featured {
+  background: $color-blue;
+  color: $color-white;
+}
+.agenda__item--break {
+  background: $color-gray;
+}
+
+.agenda__item-time,
+.agenda__item-name {
+  float: left;
+}
+
+.agenda__item-time {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.agenda__item-name {
+  @include calc('width', '100% - 70px');
+}
+
+// --- media queries -----------------------------------------------------------
+
+@include min-screen($breakpoint-small) {
+  .agenda__tba {
+    max-width: 400px;
+  }
+}
+
+@include min-screen($breakpoint-large) {
+  .agenda {
+    float: left;
+    width: 60%;
+  }
+
+  .agenda__tba {
+    margin: 0;
+  }
+}

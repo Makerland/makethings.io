@@ -1,185 +1,146 @@
+{% extends 'event/index.html' %}
 {% load staticfiles %}
-<!DOCTYPE HTML>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+
+{% block headers %}
   <title>Make Things: a global community of Internet of Things Makers</title>
   <meta name="description" content="Make Things in {{ website.event.city }} is a free, one-day event that will get you excited and teach you everything you want to know about the world of hardware, Internet of Things and Maker Movement.">
   <meta name="keywords" content="internet of things, IoT, hardware, maker, maker movement, drones, ar drone, programming, electronics, DIY, arduino, rasbperry pi, 3d printing, 3d modeling, event, free, workshop, make things, makerland">
-  <link href="{% static 'event/img/favicon.ico' %}" rel="shortcut icon">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+{% endblock %}
 
-  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-  <link rel="stylesheet" type="text/css" href="{% static 'event/css/bootstrap.css' %}" media="screen">
-  <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}" media="screen">
-  <script type="text/javascript" src="{% static 'event/js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'event/js/bootstrap.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'event/js/makethings.js' %}"></script>
-</head>
-<body>
+{% block navigation %}{% endblock %}
 
-	<!-- About -->
-	<div class="container">
-	  	<div id="about" class="row">
-	  		<div class="col-md-5 logo"><img src="{% static 'core/img/logo.png' %}" /></div>
-	  		<div class="col-md-7 about">
-		  		<h1>Make Things!</h1>
-		  		<p>Make Things is a series of free workshops for people who want to dive into the world of hardware, learn about the Internet of Things, programming, DIY and electronics.
-                    Make Things is also a global community of Makers - people who love technology, but also love to create, build and solve their own problems. </p>
-                <p class="buttons"><a class="button" href="#events">Check out our workshops</a></p>
-		  	</div>
-	  	</div>
-	</div>
+{% block content %}
 
-    <!-- Goal -->
-    <div id="goal">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-                    </div>
-					<div class="col-md-6">
-						<h2>Mission</h2>
-						<p>
-                            We believe that technology is for people. People should be able to fix things they buy, understand
-                            how they work and be able to turn their ideas into reality. Technology should makes our lives easier and more joyful.
-                            With the rapid popularization of amazing technologies like Arduino, Raspberry Pi or 3D printing, we believe that
-                            everyone who is resourceful and creative can be a Maker.
-                        </p>
-                        <p>
-                            So here is the goal: <b>to make it as easy as possible for people to dive into hardware, really understand technology
-                            and start Making Things.</b> We're trying to achieve this by organizing free, one-day workshops,
-                            providing resources and tools to local communities and empowering them to become Makers.
-                        </p>
+  {% include 'core/includes/intro.html' %}
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <section id="goal" class="goal">
+    <div class="l-container">
+      <div class="goal__text">
+            <h2>Mission</h2>
+            <p>
+                We believe that technology is for people. People should be able to fix things they buy, understand
+                how they work and be able to turn their ideas into reality. Technology should makes our lives easier and more joyful.
+                With the rapid popularization of amazing technologies like Arduino, Raspberry Pi or 3D printing, we believe that
+                everyone who is resourceful and creative can be a Maker.
+            </p>
+            <p>
+                So here is the goal: <b>to make it as easy as possible for people to dive into hardware, really understand technology
+                and start Making Things.</b> We're trying to achieve this by organizing free, one-day workshops,
+                providing resources and tools to local communities and empowering them to become Makers.
+            </p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Events -->
-    <div class="container">
-		<div id="events">
-            <h2>Upcoming events:</h2>
-            <div class="row">
-                <div class="col-md-4">
-					<p><a href="/berlin">Make Things in Berlin</a></p>
-				</div>
-                <div class="col-md-4">
-                    <p><a href="/krakow">Make Things in Kraków</a></p>
-                </div>
-                <div class="col-md-4">
-                    <p><a href="/paris">Make Things in Paris</a></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-					Don't see your city on the list? <a href="#yourcity">Organize Make Things in Your City!</a>
-				</div>
-			</div>
-		</div>
-	</div>
+  <section id="events" class="events">
+    <div class="l-container">
+      <h2 class="events__headline">Upcoming events:</h2>
+      <p class="events__text">Don't see your city on the list? <a href="#yourcity">Organize Make Things in Your City!</a></p>
+      <ul class="events__items">
+        <li class="events__item">
+          <h4 class="events__name"><a href="/berlin">Make Things in Berlin</a></h4>
+        </li>
+        <li class="events__item">
+          <h4 class="events__name"><a href="/vienna">Make Things in Vienna</a></h4>
+        </li>
+        <li class="events__item">
+          <h4 class="events__name"><a href="/krakow">Make Things in Kraków</a></h4>
+        </li>
+        <li class="events__item">
+          <h4 class="events__name"><a href="/paris">Make Things in Paris</a></h4>
+        </li>
 
-	<!-- Your City -->
-	<div id="yourcity">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
+      </ul>
 
-					<div class="col-md-6">
-						<h2>Make Things in your city?</h2>
-						<p>You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends with a global help from Makerland team. Help us spread the joy of making things and bring Make Things event to your city:  </p>
-						<p style="margin-top: 30px"><a href="http://makethings.io/" target="_blank" class="button">Organize Make Things</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    </div>
+  </section>
 
-    <!-- Team -->
-	<div class="container">
-		<div id="team">
-			<h2>Who is behind this?</h2>
-            Make Things was started by a team that also created <a href="http://makerland.org/">Makerland, awesome Maker Conference</a> and <a href="http://book.makerland.org/">Tutorials: Your First Steps with the Internet of Things</a>.
-			<div class="row">
-                <div class="col-md-3">
-                    <p class="photo"><div class="circle" style="background: url('/static/core/img/ola.png') center no-repeat; background-size: 160px auto"></div></p>
-                    <p><b>Ola Sitarska</b></p>
-                    <p><a href="http://twitter.com/olasitarska" target="_blank">@olasitarska</a></p>
-                </div>
-                <div class="col-md-3">
-                    <p class="photo"><div class="circle" style="background: url('/static/core/img/przemek.png') center no-repeat; background-size: 160px auto"></div></p>
-                    <p><b>Przemek Lewandowski</b></p>
-                    <p><a href="http://twitter.com/haxoza" target="_blank">@haxoza</a></p>
-                </div>
-                <div class="col-md-3">
-                    <p class="photo"><div class="circle" style="background: url('/static/core/img/kuba.png') center no-repeat; background-size: 160px auto"></div></p>
-                    <p><b>Kuba Kucharski</b></p>
-                    <p><a href="http://twitter.com/83tb" target="_blank">@83tb</a></p>
-                </div>
-			</div>
-		</div>
-	</div>
+  <div id="yourcity" class="about">
+    <div class="l-container">
+      <section class="about__box">
+        <h2>Make Things in your city?</h2>
+        <p>
+          You can have Make Things event in your city, too! Every Make Things event is organized by a local team of volunteers who are passionate friends with a global help from Makerland team. Help us spread the joy of making things and bring Make Things event to your city.
+        </p>
+        <a href="/inyourcity/" class="button about__button">Organize Make Things</a>
+      </section>
+    </div>
+  </div>
+
+  <section id="team" class="organizers">
+    <div class="l-container">
+      <h2 class="organizers__headline">Who is behind this?</h2>
+      <p class="organizers__text">Make Things was started by a team that also created <a href="http://makerland.org/">Makerland, awesome Maker Conference</a> and <a href="http://book.makerland.org/">Tutorials: Your First Steps with the Internet of Things</a>.</p>
+      <ul class="organizers__items">
+
+            <li class="organizers__item">
+              <figure class="organizer">
+               <img class="organizer__icon" src="{% static 'core/img/ola.png' %}" alt="Ola Sitarska">
+                <p class="organizer__name">Ola Sitarska</p>
+                <a href="http://twitter.com/olasitarska" class="organizer__twitter" target="_blank">@olasitarska</a>
+              </figure>
+            </li>
+            <li class="organizers__item">
+              <figure class="organizer">
+               <img class="organizer__icon" src="{% static 'core/img/przemek.png' %}" alt="Przemek Lewandowski">
+                <p class="organizer__name">Przemek Lewandowski</p>
+                <a href="http://twitter.com/haxoza" class="organizer__twitter" target="_blank">@haxoza</a>
+              </figure>
+            </li>
+            <li class="organizers__item">
+              <figure class="organizer">
+               <img class="organizer__icon" src="{% static 'core/img/kuba.png' %}" alt="Kuba Kucharski">
+                <p class="organizer__name">Kuba Kucharski</p>
+                <a href="http://twitter.com/83tb" class="organizer__twitter" target="_blank">@83tb</a>
+              </figure>
+            </li>
 
 
-	<!-- Social / Newsletter -->
-	<div id="social">
-	  	<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<h2>Subscribe to latest news</h2>
-						<p>If you want to be informed about next events organized by our community, let's stay in touch:</p>
-                        <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id=c7d823ea28" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-						<p><input type="text" name="NAME" class="required" placeholder="Your name" /> <input type="email" name="EMAIL" class="required email" placeholder="Your e-mail" /></p>
-						<p style="margin-top: 30px"><button class="button">Subscribe</button></p>
-                         </form>
+      </ul>
+    </div>
+  </section>
 
-                        <h2 style="margin-top: 70px">Follow us on social media</h2>
-                        <div class="fb-like-box" data-href="http://facebook.com/makethingsio" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<footer>
-		<div class="wires">
-			<div class="container">
-				<div class="left">
-					Contact us: <br /> <a href="mailto:hello@makethings.io">hello@makethings.io</a><br /><br />
-
-					<div class="fb-like" data-href="http://facebook.com/makethingsio" data-send="false" data-width="330" data-show-faces="true"></div>
-				</div>
-			</div>
-		</div>
-	</footer>
+  <section id="social" class="contact">
+    <div class="l-container">
+      <h2 class="contact__headline">Subscribe to latest news</h2>
+      <form action="http://makethings.us8.list-manage.com/subscribe/post?u=3eb2b1d5cb14aeaa45e344abe&amp;id=c7d823ea28" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form validate" target="_blank" novalidate>
+        <p class="form__text">
+          If you want to be informed about next events organized by our community, let's stay in touch:
+        </p>
+        <div class="form__row">
+          <div class="form__row-input">
+            <input type="text" class="form__input" placeholder="Your name">
+          </div>
+          <div class="form__row-input form__row-input--email">
+            <input type="email" class="form__input" placeholder="Your e-mail">
+          </div>
+        </div>
+        <div class="form__row">
+          <button type="submit" class="form__submit">Subscribe</button>
+        </div>
+      </form>
 
 
-	<!-- fb -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=345022845576638";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
+      <h2 class="contact__headline">Follow us on social media</h2>
+      <div class="contact__social-media">
+        <div class="contact__facebook fb-like-box" data-href="http://facebook.com/makethingsio" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+        <a href="https://twitter.com/makethings_" class="contact__twitter twitter-follow-button" data-show-count="false" data-size="large">Follow @makethings_</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- analytics -->
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+{% endblock %}
 
-          ga('create', 'UA-40028264-5', 'makethings.io');
-          ga('send', 'pageview');
-        </script>
-</body>
-</html>
+{% block footer %}
+  <div class="footer-wrapper">
+    <footer class="footer">
+      <div class="l-container">
+        <p class="footer__contact">
+          Contact us:<br>
+          <a href="mailto:hello@makethings.io">hello@makethings.io</a>
+        </p>
+        <div class="fb-like" data-href="http://facebook.com/makethingsio" data-send="false" data-width="330" data-show-faces="true"></div>
+      </div>
+    </footer>
+  </div>
+{% endblock %}
